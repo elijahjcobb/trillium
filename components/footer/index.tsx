@@ -10,28 +10,24 @@ export function Footer() {
 		<section>
 			<h3>About Us</h3>
 			<ul>
-				<li><Link href=''>hi</Link></li>
-				<li><Link href=''>hello</Link></li>
-				<li><Link href=''>foo</Link></li>
-				<li><Link href=''>bar</Link></li>
+				<li><Link href='/about'>The Partnership</Link></li>
+				<li><Link href='/about#erica'>Erica Marshall</Link></li>
+				<li><Link href='/about#laura'>Laura Cobb</Link></li>
 			</ul>
 		</section>
 		<section>
-			<h3>Resources</h3>
+			<h3>Take Action</h3>
 			<ul>
-				<li><Link href=''>hi</Link></li>
-				<li><Link href=''>hello</Link></li>
-				<li><Link href=''>foo</Link></li>
-				<li><Link href=''>bar</Link></li>
+				<li><Link href='/search'>Search</Link></li>
+				<li><Link href='/buying'>Buy a House</Link></li>
+				<li><Link href='/selling'>List your house</Link></li>
 			</ul>
 		</section>
 		<section>
-			<h3>Contact Us</h3>
+			<h3>Connect</h3>
 			<ul>
-				<li><Link href=''>Foo</Link></li>
-				<li><Link href=''>Bar</Link></li>
-				<li><Link href=''>foo</Link></li>
-				<li><Link href=''>bar</Link></li>
+				<li><Link href='/contact'>Contact Us</Link></li>
+				<li><Link target={'_blank'} href='https://www.facebook.com/traversecityrealestate.today'>Facebook</Link></li>
 			</ul>
 		</section>
 	</footer>
