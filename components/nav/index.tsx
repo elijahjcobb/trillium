@@ -20,12 +20,14 @@ function NavItem({ link }: { link: LinkType }): JSX.Element {
 
 export function Nav(): JSX.Element {
 	return <header className={styles.header}>
-		<Logo />
-		<nav className={styles.nav}>
-			<ul className={styles.list}>
-				{LINKS.map(link => <NavItem key={link.name} link={link} />)}
-			</ul>
-			<Button value='Contact' href="/contact" />
-		</nav>
+		<div className={styles.container}>
+			<Logo />
+			<nav className={styles.nav}>
+				<ul className={styles.list}>
+					{LINKS.map(link => <NavItem key={link.name} link={link} />)}
+				</ul>
+				<Button value='Contact' href="/contact" />
+			</nav>
+		</div>
 	</header>
 }

@@ -1,12 +1,18 @@
 .header {
-  max-width: var(--bp-desktop);
-  margin-left: auto;
-  margin-right: auto;
   padding: var(--sp2);
   width: 100%;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 99999999;
 }
 
-.header,
+.container {
+  max-width: var(--bp-desktop);
+  margin: auto;
+}
+
+.container,
 .nav,
 .list {
   display: flex;

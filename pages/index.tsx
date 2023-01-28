@@ -9,14 +9,14 @@ import styles from "#/styles/index.module.css";
 
 export default function Page(): JSX.Element {
   return <div className={styles.page}>
+    <Nav />
     <div className={styles.hero}>
-      <Nav />
       <Hero />
     </div>
     <Properties />
     <Agents />
     <Testimonials />
-    <Callout />
+    <Callout cta='Contact an Agent' subtitle="Whether you would like to buy or list, reach out and we would be happy to start the process." />
     <Footer />
   </div>
 }

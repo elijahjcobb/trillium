@@ -4,12 +4,9 @@
   width: 100%;
   grid-template-columns: 50% 50%;
   max-width: var(--bp-desktop);
-  background: var(--white);
-  border-radius: var(--sp4);
   margin-left: auto;
   margin-right: auto;
   padding: var(--sp4);
-  box-shadow: 0 0 var(--sp4) rgba(0, 0, 0, 0.1);
 }
 
 .left,

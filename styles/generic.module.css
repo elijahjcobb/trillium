@@ -1,0 +1,23 @@
+.container {
+  width: 100%;
+  max-width: var(--bp-desktop);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--sp8) var(--sp2);
+  gap: var(--sp6);
+}
+
+.container section,
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.container section {
+  gap: var(--sp3);
+}
+
+.container p {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
