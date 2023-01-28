@@ -14,7 +14,9 @@ export function Button({
 	onClick,
 	disabled = false,
 	href,
-	postIcon: PostIcon
+	postIcon: PostIcon,
+	type = 'button',
+	form
 }: {
 	value: string,
 	icon?: IconType,
@@ -22,6 +24,8 @@ export function Button({
 	onClick?: () => void;
 	href?: string;
 	postIcon?: IconType;
+	type?: 'submit' | 'button'
+	form?: string;
 }): JSX.Element {
 
 	const Element = useMemo(() => href ? Link : RawButton, [href]);
@@ -31,6 +35,8 @@ export function Button({
 	}, [onClick, disabled]);
 
 	return <Element
+		form={form}
+		type={type}
 		href={href!}
 		onClick={handleClick}
 		className={cn(
@@ -39,7 +45,7 @@ export function Button({
 		)}
 	>
 		{Icon ? <Icon /> : null}
-		{value}
+		<span>{value}</span>
 		{PostIcon ? <PostIcon /> : null}
 	</Element>
 }

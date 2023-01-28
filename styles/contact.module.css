@@ -1,0 +1,107 @@
+.contact {
+  margin: var(--sp2);
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50% 50%;
+  max-width: var(--bp-desktop);
+  background: var(--white);
+  border-radius: var(--sp4);
+  margin-left: auto;
+  margin-right: auto;
+  padding: var(--sp4);
+  box-shadow: 0 0 var(--sp4) rgba(0, 0, 0, 0.1);
+}
+
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
+.right {
+  justify-content: center;
+}
+
+.contact {
+  gap: var(--sp4);
+}
+
+.left,
+.right {
+  gap: var(--sp2);
+}
+
+.left p {
+  color: var(--gray);
+}
+
+.row {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: var(--sp2);
+}
+
+.icon {
+  border: solid 2px var(--pri);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  padding: var(--sp);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--trans);
+}
+
+.icon > * {
+  transition: var(--trans);
+}
+
+.row:hover .icon {
+  background: var(--pri);
+  color: var(--bg);
+}
+
+.row span {
+  color: var(--fg);
+  font-size: 20px;
+  transition: var(--trans);
+}
+
+.row:hover span {
+  color: var(--pri);
+}
+
+.form > * {
+  display: block;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input,
+.form select,
+.form textarea {
+  margin-bottom: var(--sp);
+  font-family: var(--font);
+  font-size: 1rem;
+  border: solid 1px var(--acc2);
+  background: var(--acc1);
+  border-radius: var(--sp-2);
+  padding: var(--sp-2) var(--sp2);
+}
+
+.form label {
+  margin-bottom: var(--sp-2);
+}
+
+.form *:focus {
+  outline: solid 2px var(--pri);
+}
+
+.form textarea {
+  resize: none;
+}

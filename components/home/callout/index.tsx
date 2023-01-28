@@ -8,7 +8,7 @@ export function Callout() {
 				<p className={styles.title}>Talk to an Agent</p>
 				<p className={styles.subtitle}>Quod eligendi suscipit doloremque sunt id. Accusantium explicabo minima modi ut.</p>
 			</div>
-			<Button value='Connect with an Agent' />
+			<Button href='/contact' value='Connect with an Agent' />
 		</div>
 	</section>
 }

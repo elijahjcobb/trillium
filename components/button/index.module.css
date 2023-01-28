@@ -14,6 +14,11 @@
   font-size: var(--fontSize);
 }
 
+.button span {
+  flex-grow: 1;
+  text-align: center;
+}
+
 .button:hover:not(.disabled) {
   background: transparent;
   color: var(--pri);
