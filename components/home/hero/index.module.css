@@ -1,0 +1,35 @@
+.hero {
+  width: 100%;
+  max-width: var(--bp-desktop);
+  padding: var(--sp6) var(--sp2);
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--sp4);
+}
+
+.title {
+  font-weight: 600;
+  font-size: var(--sp7);
+  max-width: var(--bp-mobile);
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: var(--fontSizeL);
+  color: var(--gray);
+  max-width: var(--bp-mobile);
+}
+
+.title,
+.subtitle {
+  z-index: 2;
+}
+
+.house {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}

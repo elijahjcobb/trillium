@@ -1,0 +1,82 @@
+.card {
+  background: var(--white);
+  box-shadow: 0 0 var(--sp2) rgba(var(--fg-rgb), 0.05);
+  text-decoration: none;
+  color: var(--fg);
+  transition: var(--trans);
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.card:hover {
+  cursor: pointer;
+  box-shadow: 0 0 var(--sp4) rgba(var(--fg-rgb), 0.15);
+  transform: scale(1.025);
+}
+
+.imageContainer {
+  height: 280px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  transition: var(--trans);
+  z-index: 1;
+}
+
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+.text {
+  padding: var(--sp2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  z-index: 2;
+  flex-shrink: 1;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.address {
+  font-size: 14px;
+  color: var(--gray);
+}
+
+.price {
+  color: var(--pri);
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.infos {
+  display: flex;
+  gap: var(--sp2);
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: var(--sp);
+}
+
+.infoValue {
+  color: var(--gray);
+  font-size: 12px;
+}
+
+.infoIcon {
+  color: var(--pri);
+}
+
+.sep {
+  width: 2px;
+  border-radius: 2px;
+  background: var(--acc2);
+  height: 20px;
+}

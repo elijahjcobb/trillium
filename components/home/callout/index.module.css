@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  background-color: var(--dark-blue);
+  padding: var(--sp4);
+  min-height: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--bp-desktop);
+  display: flex;
+  gap: var(--sp4);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text {
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp2);
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.subtitle {
+  color: var(--acc2);
+}

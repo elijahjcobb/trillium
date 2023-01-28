@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+  max-width: var(--bp-desktop);
+  display: grid;
+  height: 40vh;
+  grid-template-columns: 50% auto auto auto;
+  align-items: center;
+  margin: auto;
+  gap: var(--sp4);
+}
+
+.container > section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--sp);
+}
+
+.container h3 {
+  font-weight: 600;
+}
+
+.container ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.container a {
+  color: var(--gray);
+  text-decoration: none;
+  transition: var(--trans);
+  text-transform: capitalize;
+}
+
+.container a:hover {
+  color: var(--pri);
+}

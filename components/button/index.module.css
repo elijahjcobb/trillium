@@ -1,0 +1,25 @@
+.button {
+  background: var(--pri);
+  color: var(--bg);
+  text-decoration: none;
+  padding: var(--sp) var(--sp2);
+  border-radius: var(--sp);
+  border: solid 2px var(--pri);
+  transition: var(--trans);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--sp);
+  font-family: var(--font-title);
+  font-size: var(--fontSize);
+}
+
+.button:hover:not(.disabled) {
+  background: transparent;
+  color: var(--pri);
+}
+
+.disabled {
+  cursor: not-allowed;
+  filter: brightness(0.8);
+}
