@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { IconType } from "react-icons";
 import { FaMapMarkedAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { Button } from "#/components/button";
+import { Footer } from "#/components/footer";
 
 function ContactRow({ icon: Icon, value, href }: { icon: IconType, value: string, href: string }) {
 	return <Link className={styles.row} href={href}>
@@ -51,5 +52,6 @@ export default function Page() {
 				<ContactRow icon={FaEnvelope} href='' value="laura@thetrilliumpartners.com" />
 			</div>
 		</div>
+		<Footer />
 	</div>
 }
