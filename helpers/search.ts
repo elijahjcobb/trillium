@@ -28,7 +28,7 @@ export async function propertyById(id: string): Promise<Property | undefined> {
   return propertyFromRawProperty(raw);
 }
 
-export async function topProperties(): Promise<Property[]> {
+export async function topProperties(limit: number = 6): Promise<Property[]> {
   try {
     const properties = await search({
       priceMax: 4_000_000,
@@ -36,7 +36,7 @@ export async function topProperties(): Promise<Property[]> {
       bedroomMin: 3,
       type: ["res"],
     });
-    properties.splice(6);
+    if (properties.length > limit) properties.splice(limit);
     return properties;
   } catch (e) {
     console.error(e);

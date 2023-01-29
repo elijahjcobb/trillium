@@ -31,3 +31,5 @@ export const PRICE_BRACKETS: string[] = [
   "3m - 4m",
   "> 4m",
 ];
+
+export const ONE_DAY = 60 * 60 * 24;

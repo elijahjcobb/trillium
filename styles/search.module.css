@@ -1,0 +1,11 @@
+.properties {
+  display: grid;
+  grid-template-columns: repeat(3, 370px);
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+  gap: var(--sp4);
+  padding: var(--sp6) var(--sp2);
+}

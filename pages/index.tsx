@@ -5,6 +5,7 @@ import { Hero } from "#/components/home/hero";
 import { Properties } from "#/components/home/properties";
 import { Testimonials } from "#/components/home/testimonials";
 import { Nav } from "#/components/nav";
+import { ONE_DAY } from "#/data/constants";
 import { Property } from "#/data/types";
 import { topProperties } from "#/helpers/search";
 import styles from "#/styles/index.module.css";
@@ -26,7 +27,7 @@ export default function Page({ properties }: { properties: Property[] }): JSX.El
 
 export const getStaticProps: GetStaticProps = async () => {
   return {
-    revalidate: 60 * 60 * 24, // 1 day
+    revalidate: ONE_DAY,
     props: {
       properties: await topProperties()
     }
