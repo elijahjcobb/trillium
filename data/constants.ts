@@ -26,10 +26,8 @@ export const PRICE_BRACKETS: string[] = [
   "250k - 500k",
   "500k - 750k",
   "750k - 1m",
-  "1m - 2m",
-  "2m - 3m",
-  "3m - 4m",
-  "> 4m",
+  "1m - 3m",
+  "> 3m",
 ];
 
 export const ONE_DAY = 60 * 60 * 24;

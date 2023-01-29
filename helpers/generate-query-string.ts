@@ -40,7 +40,7 @@ export function generateQueryString({
   setParam(params, "beds_min", bedroomMin, "all");
   setParam(params, "baths_min", bathroomMin, "all");
   setParam(params, "county", county, "all");
-  setParam(params, "city", city, "all");
+  setParam(params, "city", city?.replace(" ", "+"), "all");
   setParam(params, "year_built_min", yearBuiltMin, "all");
   setParam(params, "area_min", sqftMin, "all");
   setParam(params, "page", page, "1");

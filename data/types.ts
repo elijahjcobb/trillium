@@ -5,6 +5,15 @@ export interface Link {
 
 export type Links = Link[];
 
+export interface RawQuery {
+  city: number;
+  type: number;
+  price: number;
+  beds: number;
+  baths: number;
+  sqft: number;
+  yearBuilt: number;
+}
 export interface Query {
   priceMin?: number;
   priceMax?: number;
