@@ -21,7 +21,9 @@ function NavItem({ link }: { link: LinkType }): JSX.Element {
 export function Nav(): JSX.Element {
 	return <header className={styles.header}>
 		<div className={styles.container}>
-			<Logo />
+			<Link href='/'>
+				<Logo />
+			</Link>
 			<nav className={styles.nav}>
 				<ul className={styles.list}>
 					{LINKS.map(link => <NavItem key={link.name} link={link} />)}

@@ -15,9 +15,20 @@
 
 .container section {
   gap: var(--sp3);
+  flex-shrink: 1;
 }
 
 .container p {
   font-size: 1.125rem;
   line-height: 1.5;
+}
+
+.container article {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp4);
+}
+
+.container article:nth-child(even) {
+  flex-direction: row-reverse;
 }

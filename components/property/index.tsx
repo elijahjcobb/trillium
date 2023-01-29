@@ -4,6 +4,7 @@ import type { IconType } from "react-icons";
 import { FaBed, FaBath, FaRuler } from "react-icons/fa";
 import { useMemo } from "react";
 import Link from "next/link";
+import { Property as PropertyType } from "#/data/types";
 
 function PropertyInfo({
 	value,
@@ -19,43 +20,35 @@ function PropertyInfo({
 }
 
 export function Property({
-	name,
-	address,
-	price,
-	beds,
-	bathrooms,
-	sqft,
-	image,
-	mls
+	property
 }: {
-	name: string;
-	address: string;
-	price: number;
-	beds: number;
-	bathrooms: number;
-	sqft: number;
-	image: string | StaticImageData;
-	mls: string;
+	property: PropertyType
 }): JSX.Element {
 
 	const formattedPrice = useMemo(() => {
-		return `$${price.toLocaleString()}`
-	}, [price]);
+		return `$${property.listPrice.toLocaleString()}`
+	}, [property.listPrice]);
 
-	return <Link href={`/properties/${mls}`} className={styles.card}>
+	const formattedAddress = useMemo(() => {
+		return `${property.city}, ${property.zip}`
+	}, [property.city, property.zip]);
+
+	const formattedSqft = useMemo(() => property.sqft.toLocaleString(), [property.sqft]);
+
+	return <Link href={`/search/${property.mls}`} className={styles.card}>
 		<div className={styles.imageContainer}>
-			<Image className={styles.image} width={370} height={280} alt='property picture' src={image} />
+			<Image className={styles.image} width={370} height={280} alt='property picture' src={property.images[0]} />
 		</div>
 		<div className={styles.text}>
-			<p className={styles.name}>{name}</p>
-			<p className={styles.address}>{address}</p>
+			<p className={styles.name}>{property.street}</p>
+			<p className={styles.address}>{formattedAddress}</p>
 			<p className={styles.price}>{formattedPrice}</p>
 			<div className={styles.infos}>
-				<PropertyInfo value={`${beds} beds`} icon={FaBed} />
+				<PropertyInfo value={`${property.bedrooms} beds`} icon={FaBed} />
 				<div className={styles.sep} />
-				<PropertyInfo value={`${bathrooms} beds`} icon={FaBath} />
+				<PropertyInfo value={`${property.bedrooms} baths`} icon={FaBath} />
 				<div className={styles.sep} />
-				<PropertyInfo value={`${sqft} sqft`} icon={FaRuler} />
+				<PropertyInfo value={`${formattedSqft} sqft`} icon={FaRuler} />
 			</div>
 		</div>
 	</Link>

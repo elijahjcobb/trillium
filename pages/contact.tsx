@@ -9,7 +9,7 @@ import { Button } from "#/components/button";
 import { Footer } from "#/components/footer";
 
 function ContactRow({ icon: Icon, value, href }: { icon: IconType, value: string, href: string }) {
-	return <Link className={styles.row} href={href}>
+	return <Link target={'_blank'} className={styles.row} href={href}>
 		<div className={styles.icon} >
 			<Icon size={24} />
 		</div>
@@ -45,11 +45,11 @@ export default function Page() {
 			</div>
 			<div className={styles.right}>
 				<Image src={contactImage} alt='contact' width={360} />
-				<ContactRow icon={FaMapMarkedAlt} href='' value="Traverse City, MI" />
-				<ContactRow icon={FaPhone} href='' value="210-286-8954" />
-				<ContactRow icon={FaPhone} href='' value="231-409-7712" />
-				<ContactRow icon={FaEnvelope} href='' value="erica@thetrilliumpartners.com" />
-				<ContactRow icon={FaEnvelope} href='' value="laura@thetrilliumpartners.com" />
+				<ContactRow icon={FaMapMarkedAlt} href='https://goo.gl/maps/fwQeyg8EtM39JdzV9' value="Traverse City, MI" />
+				<ContactRow icon={FaPhone} href='tel:+12102868954' value="Erica: 210-286-8954" />
+				<ContactRow icon={FaPhone} href='tel:+12314097712' value="Laura: 231-409-7712" />
+				<ContactRow icon={FaEnvelope} href='mailto:erica@thetrilliumpartners.com' value="erica@thetrilliumpartners.com" />
+				<ContactRow icon={FaEnvelope} href='mailto:laura@thetrilliumpartners.com' value="laura@thetrilliumpartners.com" />
 			</div>
 		</div>
 		<Footer />

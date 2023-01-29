@@ -11,17 +11,10 @@ export function Properties({ properties }: { properties: PropertyType[] }): JSX.
 		<p className={styles.subtitle}>Iste excepturi eaque consequatur laborum sit architecto voluptatem asperiores.</p>
 		<div className={styles.properties}>
 			{properties.map(p => <Property
-				mls={p.mls}
 				key={p.mls}
-				name='Modern Apartment in City'
-				address={p.address}
-				price={p.listPrice}
-				beds={p.bedrooms}
-				bathrooms={p.baths}
-				sqft={p.sqft}
-				image={p.images[0]}
+				property={p}
 			/>)}
 		</div>
-		<Button href='/properties' value='View More Properties' postIcon={FaArrowRight} />
+		<Button href='/search' value='View More Properties' postIcon={FaArrowRight} />
 	</section>
 }

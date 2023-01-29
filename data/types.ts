@@ -28,7 +28,9 @@ export interface Property {
   bathsFull: number;
   bathsHalf: number;
   bedrooms: number;
+  street: string;
   lotSqft: number;
+  state: string;
   images: string[];
   acres: number;
   coordinates: [number, number];
