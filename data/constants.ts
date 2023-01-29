@@ -33,3 +33,44 @@ export const PRICE_BRACKETS: string[] = [
 ];
 
 export const ONE_DAY = 60 * 60 * 24;
+
+export const BEDS: string[] = [
+  "Any",
+  "1+ Bedroom",
+  "2+ Bedrooms",
+  "3+ Bedrooms",
+  "4+ Bedrooms",
+  "5+ Bedrooms",
+  "6+ Bedrooms",
+];
+
+export const BATHS: string[] = [
+  "Any",
+  "1+ Bathroom",
+  "2+ Bathrooms",
+  "3+ Bathrooms",
+  "4+ Bathrooms",
+  "5+ Bathrooms",
+  "6+ Bathrooms",
+];
+
+export const SQFT: string[] = [
+  "Any",
+  "1000+ sqft",
+  "2000+ sqft",
+  "3000+ sqft",
+  "4000+ sqft",
+  "5000+ sqft",
+];
+
+export const YEAR_BUILT: string[] = [
+  "Any",
+  "1950+",
+  "1960+",
+  "1970+",
+  "1980+",
+  "1990+",
+  "2000+",
+  "2010+",
+  "2020+",
+];
