@@ -80,6 +80,8 @@ body {
   color: var(--fg);
   font-family: var(--font);
   background: var(--bg);
+  scroll-behavior: smooth !important;
+  scroll-padding-top: 120px;
 }
 
 h2 {

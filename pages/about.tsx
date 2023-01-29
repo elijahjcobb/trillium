@@ -20,7 +20,7 @@ export default function Page() {
 					<p>{`Laura and Erica's expertise in the Northern Michigan market, combined with their strong negotiating skills and ability to understand their clients' needs, sets them apart from the competition. And with a long list of awards and accolades, it's no wonder they're considered some of the best in the business. So whether you're a first-time homebuyer, a seasoned investor, or simply looking for your next dream home, Laura and Erica have the experience and drive to help you achieve your goals. With their passion for helping clients and their commitment to excellence, they're the perfect choice for all your real estate needs.`}</p>
 				</section>
 			</article>
-			<article>
+			<article id='erica'>
 				<Image width={400} src={ericaImage} alt='erica and laura standing' />
 				<section>
 					<h2>{`Erica`}</h2>
@@ -30,7 +30,7 @@ export default function Page() {
 					<p>{`So if you're ready to take the next step in your real estate journey, reach out to Erica today. With their passion for helping clients and their commitment to excellence, they're the perfect choice for all your real estate needs.`}</p>
 				</section>
 			</article>
-			<article>
+			<article id='laura'>
 				<Image width={400} src={lauraImage} alt='erica and laura standing' />
 				<section>
 					<h2>{`Laura`}</h2>
@@ -42,9 +42,9 @@ export default function Page() {
 			</article>
 		</div>
 		<Callout
-			title="Start the selling process"
-			subtitle="Let's chat, we would be happy to list your house. Let's start the process today!"
-			cta="List My House"
+			title="Let's talk"
+			subtitle="We would be happy to list your house, or help you find a new one. Let's start the process today!"
+			cta="Take Action"
 		/>
 		<Footer />
 	</>

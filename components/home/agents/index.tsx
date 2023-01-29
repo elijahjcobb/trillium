@@ -46,7 +46,7 @@ function Agent({
 
 export function Agents() {
 	return <section className={styles.container}>
-		<h2>Meet Our Agents</h2>
+		<h2>Meet Our Realtors</h2>
 		<div className={styles.agents}>
 			<Agent
 				name="Erica Marshall"
@@ -61,15 +61,6 @@ export function Agents() {
 				name="Laura Cobb"
 				image={laura}
 				title='Real Estate Agent'
-				phone="123456789"
-				facebook=""
-				linkedIn=""
-				email=""
-			/>
-			<Agent
-				name="Susan Cobb"
-				image={laura}
-				title='Finance'
 				phone="123456789"
 				facebook=""
 				linkedIn=""

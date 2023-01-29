@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "./index.module.css";
-import bothImage from "#/public/both.png";
+import bothImage from "#/public/standing-blue.png";
 import { QueryPicker } from "../../query-picker";
 
 export function Hero(): JSX.Element {
