@@ -1,7 +1,7 @@
 import { Nav } from "#/components/nav";
 import styles from "#/styles/contact.module.css";
 import Image from "next/image";
-import contactImage from "#/public/contact.svg";
+import contactImage from "#/public/both.png";
 import Link from "next/link";
 import type { IconType } from "react-icons";
 import { FaMapMarkedAlt, FaPhone, FaEnvelope } from "react-icons/fa";
@@ -22,7 +22,7 @@ export default function Page() {
 		<Nav />
 		<div className={styles.contact}>
 			<div className={styles.left}>
-				<h2>Contact an Agent</h2>
+				<h2>Contact the Trillium Partners</h2>
 				<p>Aliquam cum praesentium ratione odit enim aut perspiciatis vel qui fugiat rerum itaque.</p>
 				<form id='contactForm' className={styles.form} action="https://snatch.fyi/api/entry/b397bab4-5c53-4525-aab1-ec309714fe75">
 					<label htmlFor='name'>Name: *</label>
