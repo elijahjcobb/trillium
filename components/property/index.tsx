@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { Property as PropertyType } from "#/data/types";
 
-function PropertyInfo({
+export function PropertyInfo({
 	value,
 	icon: Icon
 }: {

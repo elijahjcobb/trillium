@@ -54,6 +54,8 @@ export interface Property {
   exteriorFeatures: string[];
   water: "well" | "municipal";
   status: string;
+  type: Type;
+  hvac: string[];
 }
 
 export type Response = RawProperty[];

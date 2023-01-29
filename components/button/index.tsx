@@ -16,7 +16,8 @@ export function Button({
 	href,
 	postIcon: PostIcon,
 	type = 'button',
-	form
+	form,
+	newTab = false
 }: {
 	value: string,
 	icon?: IconType,
@@ -26,6 +27,7 @@ export function Button({
 	postIcon?: IconType;
 	type?: 'submit' | 'button'
 	form?: string;
+	newTab?: boolean;
 }): JSX.Element {
 
 	const Element = useMemo(() => href ? Link : RawButton, [href]);
@@ -38,6 +40,7 @@ export function Button({
 		form={form}
 		type={type}
 		href={href!}
+		target={newTab ? '_blank' : "_self"}
 		onClick={handleClick}
 		className={cn(
 			styles.button,

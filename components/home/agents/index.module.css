@@ -22,7 +22,6 @@
   flex-direction: column;
   text-decoration: none;
   color: var(--fg);
-  cursor: pointer;
 }
 
 .info {

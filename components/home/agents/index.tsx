@@ -7,7 +7,7 @@ import type { IconType } from "react-icons";
 import { FaFacebookF, FaLinkedinIn, FaEnvelope, FaPhone } from "react-icons/fa";
 
 function AgentSocial({ icon: Icon, href }: { icon: IconType, href: string }) {
-	return <Link className={styles.social} href={href}>
+	return <Link target='_blank' className={styles.social} href={href}>
 		<Icon className={styles.icon} />
 	</Link>
 }
@@ -29,19 +29,19 @@ function Agent({
 	linkedIn: string;
 	email: string;
 }) {
-	return <Link href={email} className={styles.agent}>
+	return <div className={styles.agent}>
 		<Image width={270} className={styles.image} src={image} alt='headshot' />
 		<div className={styles.info}>
 			<p className={styles.name}>{name}</p>
 			<div className={styles.bottom}>
 				<p className={styles.title}>{title}</p>
-				<AgentSocial icon={FaEnvelope} href="" />
-				<AgentSocial icon={FaPhone} href="" />
-				<AgentSocial icon={FaLinkedinIn} href="" />
-				<AgentSocial icon={FaFacebookF} href="" />
+				<AgentSocial icon={FaEnvelope} href={email} />
+				<AgentSocial icon={FaPhone} href={phone} />
+				<AgentSocial icon={FaLinkedinIn} href={linkedIn} />
+				<AgentSocial icon={FaFacebookF} href={facebook} />
 			</div>
 		</div>
-	</Link>
+	</div>
 }
 
 export function Agents() {
@@ -52,19 +52,19 @@ export function Agents() {
 				name="Erica Marshall"
 				image={erica}
 				title='Real Estate Broker'
-				phone="123456789"
-				facebook=""
-				linkedIn=""
-				email=""
+				phone="tel:+12102868954"
+				facebook="https://www.facebook.com/traversecityrealestate.today"
+				linkedIn="https://www.linkedin.com/in/erica-slater-marshall-19a9a423/"
+				email="mailto:erica@thetrilliumpartners.com"
 			/>
 			<Agent
 				name="Laura Cobb"
 				image={laura}
 				title='Real Estate Agent'
-				phone="123456789"
-				facebook=""
-				linkedIn=""
-				email=""
+				phone="tel:+12314097712"
+				facebook="https://www.facebook.com/traversecityrealestate.today"
+				linkedIn="https://www.linkedin.com/in/laura-cobb-a83533202/"
+				email="mailto:laura@thetrilliumpartners.com"
 			/>
 		</div>
 	</section>
