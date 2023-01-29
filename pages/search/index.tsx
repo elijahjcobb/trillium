@@ -6,7 +6,7 @@ import { BATHS, BEDS, CITIES, ONE_DAY, PRICE_BRACKETS, PROPERTY_TYPES, SQFT, YEA
 import { Property as PropertyType, Query } from "#/data/types";
 import { search, topProperties } from "#/helpers/search";
 import { GetStaticProps } from "next";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "#/styles/search.module.css";
 import { Select } from "#/components/query-picker";
 import { Button } from "#/components/button";
@@ -14,6 +14,7 @@ import { FaSearch } from "react-icons/fa";
 import { convertBracketsToQuery } from "#/helpers/convert";
 import { fetcher } from "#/helpers/fetcher";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useRouter } from "next/router";
 
 
 interface Props {
@@ -32,6 +33,7 @@ export default function Page(props: Props) {
 	const [year, setYear] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [parent] = useAutoAnimate<HTMLDivElement>();
+	const hasInitialUpdate = useRef(false);
 
 	const update = useCallback(() => {
 		setLoading(true);
@@ -48,6 +50,44 @@ export default function Page(props: Props) {
 			setLoading(false);
 		})
 	}, [city, type, priceBracket, beds, baths, sqft, year]);
+
+	useEffect(() => {
+		const url = window.location.search;
+		if (!url) return;
+		const params = new URLSearchParams(url);
+
+		let doUpdate = false;
+
+		if (params.has('city')) {
+			const c = parseInt(params.get('city')!);
+			if (!Number.isNaN(c) && c !== 0) {
+				setCity(c);
+				doUpdate = true;
+			}
+
+		}
+		if (params.has('price')) {
+			const c = parseInt(params.get('price')!);
+			if (!Number.isNaN(c) && c !== 0) {
+				setPriceBracket(c);
+				doUpdate = true;
+			}
+		}
+		if (params.has('type')) {
+			const c = parseInt(params.get('type')!);
+			if (!Number.isNaN(c) && c !== 0) {
+				setType(c);
+				doUpdate = true;
+			}
+		}
+
+		window.history.replaceState(null, '', '/search');
+
+		if (doUpdate && !hasInitialUpdate.current) {
+			update();
+			hasInitialUpdate.current = true;
+		}
+	}, [update]);
 
 	return <>
 		<Nav />

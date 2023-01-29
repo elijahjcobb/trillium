@@ -3,6 +3,9 @@ import { FaSearch, FaChevronDown } from 'react-icons/fa';
 import styles from "./index.module.css";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { CITIES, PRICE_BRACKETS, PROPERTY_TYPES } from "#/data/constants";
+import { convertBracketsToQuery } from "#/helpers/convert";
+import { stringify } from "querystring";
+import { useRouter } from "next/router";
 
 export function Select({
 	value,
@@ -34,20 +37,25 @@ export function Select({
 	</div>
 }
 
-export function QueryPicker({
-
-}: {
-
-	}): JSX.Element {
+export function QueryPicker(): JSX.Element {
 
 	const [city, setCity] = useState(0);
 	const [type, setType] = useState(0);
 	const [priceBracket, setPriceBracket] = useState(0);
+	const router = useRouter();
+
+	const search = useCallback(() => {
+		const params = new URLSearchParams();
+		params.set('city', `${city}`);
+		params.set('type', `${type}`);
+		params.set('price', `${priceBracket}`);
+		router.push(`/search?${params.toString()}`)
+	}, [city, priceBracket, type, router]);
 
 	return <div className={styles.container}>
 		<Select label="Location" value={city} onSelect={setCity} options={CITIES} />
 		<Select label="Type" value={type} onSelect={setType} options={PROPERTY_TYPES} />
 		<Select label="Price" value={priceBracket} onSelect={setPriceBracket} options={PRICE_BRACKETS} />
-		<Button value="Search" icon={FaSearch} />
+		<Button value="Search" onClick={search} icon={FaSearch} />
 	</div>
 }
