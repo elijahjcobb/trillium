@@ -1,5 +1,5 @@
 .container {
-  display: flex;
+  display: none;
   background: var(--bg);
   z-index: 2;
   gap: var(--sp4);
@@ -30,4 +30,10 @@
   align-items: center;
   gap: var(--sp);
   padding-left: 4px;
+}
+
+@media (min-width: 720px) {
+  .container {
+    display: flex;
+  }
 }

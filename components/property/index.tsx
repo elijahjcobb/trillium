@@ -1,4 +1,4 @@
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import styles from "./index.module.css";
 import type { IconType } from "react-icons";
 import { FaBed, FaBath, FaRuler } from "react-icons/fa";

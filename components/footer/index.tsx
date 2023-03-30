@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Footer() {
 	return <footer className={styles.container}>
-		<section>
+		<section className={styles.logoContainer}>
 			<LogoWithText size={300} />
 		</section>
 		<section>

@@ -17,7 +17,19 @@
   padding-top: var(--sp6);
   padding-bottom: var(--sp4);
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto;
   grid-template-rows: 2;
   gap: var(--sp4);
+}
+
+@media (min-width: 720px) {
+  .properties {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .properties {
+    grid-template-columns: auto auto auto;
+  }
 }

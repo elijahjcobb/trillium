@@ -1,5 +1,5 @@
 .header {
-  padding: var(--sp2);
+  padding: var(--sp) var(--sp4);
   width: 100%;
   position: sticky;
   top: 0;
@@ -50,4 +50,64 @@
 .link:hover,
 .linkActive {
   color: var(--pri);
+}
+
+.nav {
+  display: none;
+}
+
+.container {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hamburger {
+  outline: none;
+  border: none;
+  background: none;
+}
+
+.mobileMenu {
+  display: flex;
+  background-color: white;
+  position: absolute;
+  top: 86px;
+  height: calc(100vh - 86px);
+  width: 100%;
+  left: 0;
+}
+
+.btn {
+  transition: transform 250ms ease-in-out;
+}
+
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--acc2);
+  width: 100%;
+}
+
+.mobileList .listItem {
+  background: white;
+  width: 100%;
+}
+
+.mobileList .link {
+  width: 100%;
+  display: block;
+  padding: var(--sp2);
+}
+
+@media (min-width: 720px) {
+  .header {
+    padding: var(--sp2);
+  }
+  .nav {
+    display: flex;
+  }
+  .hamburger {
+    display: none;
+  }
 }

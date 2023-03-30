@@ -12,7 +12,7 @@ export default function Page() {
 		<Nav />
 		<div className={styles.container}>
 			<article>
-				<Image width={400} src={standingImage} alt='erica and laura standing' />
+				<Image width={300} src={standingImage} alt='erica and laura standing' />
 				<section>
 					<h2>{`The Partners`}</h2>
 					<p>{`Meet Laura and Erica, cousins and lifelong friends who are partners in real estate. Growing up in Northern Michigan, they have a deep understanding of the area and a passion for helping clients find their dream homes. With [number of years] of combined experience in the industry, these two powerhouse agents bring a wealth of knowledge and expertise to the table.`}</p>
@@ -21,7 +21,7 @@ export default function Page() {
 				</section>
 			</article>
 			<article id='erica'>
-				<Image width={400} src={ericaImage} alt='erica and laura standing' />
+				<Image width={300} src={ericaImage} alt='erica and laura standing' />
 				<section>
 					<h2>{`Erica`}</h2>
 					<p>{`Meet Erica, a seasoned real estate professional with a passion for helping clients find their dream homes. With [number of years] of experience in the industry, Erica has a deep understanding of the local market and a wealth of knowledge to offer.`}</p>
@@ -31,7 +31,7 @@ export default function Page() {
 				</section>
 			</article>
 			<article id='laura'>
-				<Image width={400} src={lauraImage} alt='erica and laura standing' />
+				<Image width={300} src={lauraImage} alt='erica and laura standing' />
 				<section>
 					<h2>{`Laura`}</h2>
 					<p>{`Meet Laura, a dedicated and knowledgeable real estate agent with a passion for helping clients achieve their real estate goals. With [number of years] of experience in the industry, Laura has a deep understanding of the local market and a wealth of resources to offer.`}</p>

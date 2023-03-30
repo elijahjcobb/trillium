@@ -10,11 +10,15 @@
 }
 
 .container > section {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: var(--sp);
+}
+
+.logoContainer {
+  display: flex !important;
 }
 
 .container h3 {
@@ -37,4 +41,10 @@
 
 .container a:hover {
   color: var(--pri);
+}
+
+@media (min-width: 900px) {
+  .container > section {
+    display: flex;
+  }
 }

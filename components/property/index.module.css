@@ -5,13 +5,6 @@
   color: var(--fg);
   transition: var(--trans);
   overflow: hidden;
-  border-radius: 8px;
-}
-
-.card:hover {
-  cursor: pointer;
-  box-shadow: 0 0 var(--sp4) rgba(var(--fg-rgb), 0.15);
-  transform: scale(1.025);
 }
 
 .imageContainer {
@@ -23,10 +16,6 @@
   object-fit: cover;
   transition: var(--trans);
   z-index: 1;
-}
-
-.card:hover .image {
-  transform: scale(1.05);
 }
 
 .text {
@@ -79,4 +68,18 @@
   border-radius: 2px;
   background: var(--acc2);
   height: 20px;
+}
+
+@media (min-width: 860px) {
+  .card {
+    border-radius: 8px;
+  }
+  .card:hover {
+    cursor: pointer;
+    box-shadow: 0 0 var(--sp4) rgba(var(--fg-rgb), 0.15);
+    transform: scale(1.025);
+  }
+  .card:hover .image {
+    transform: scale(1.05);
+  }
 }

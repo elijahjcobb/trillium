@@ -3,9 +3,9 @@ import { Link as LinkType } from "#/data/types";
 import Link from "next/link";
 import styles from "./index.module.css";
 import { Logo } from "../logo";
-import { useMemo } from "react";
-import { Button } from "../button";
-
+import { useCallback, useMemo, useState } from "react";
+import { Button, RawButton } from "../button";
+import { FaGripLines } from "react-icons/fa";
 
 function NavItem({ link }: { link: LinkType }): JSX.Element {
 
@@ -19,6 +19,13 @@ function NavItem({ link }: { link: LinkType }): JSX.Element {
 }
 
 export function Nav(): JSX.Element {
+
+	const [showNav, setShowNav] = useState(false);
+
+	const toggleNav = useCallback(() => {
+		setShowNav(v => !v);
+	}, []);
+
 	return <header className={styles.header}>
 		<div className={styles.container}>
 			<Link href='/'>
@@ -30,6 +37,16 @@ export function Nav(): JSX.Element {
 				</ul>
 				<Button value='Contact' href="/contact" />
 			</nav>
+			<RawButton onClick={toggleNav} className={styles.hamburger}>
+				<FaGripLines className={styles.btn} style={{
+					transform: `rotate(${showNav ? 90 : 0}deg)`
+				}} size={32} />
+			</RawButton>
+			<div style={{ display: showNav ? "flex" : "none" }} className={styles.mobileMenu}>
+				<ul className={styles.mobileList}>
+					{LINKS.map(link => <NavItem key={link.name} link={link} />)}
+				</ul>
+			</div>
 		</div>
 	</header>
 }

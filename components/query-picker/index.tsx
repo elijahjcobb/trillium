@@ -1,10 +1,8 @@
 import { Button } from "../button";
-import { FaSearch, FaChevronDown } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import styles from "./index.module.css";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { CITIES, PRICE_BRACKETS, PROPERTY_TYPES } from "#/data/constants";
-import { convertBracketsToQuery } from "#/helpers/convert";
-import { stringify } from "querystring";
 import { useRouter } from "next/router";
 
 export function Select({

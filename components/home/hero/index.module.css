@@ -29,8 +29,15 @@
 }
 
 .house {
+  display: none;
   position: absolute;
   bottom: 0;
   right: 0;
   top: 40px;
+}
+
+@media (min-width: 720px) {
+  .house {
+    display: block;
+  }
 }

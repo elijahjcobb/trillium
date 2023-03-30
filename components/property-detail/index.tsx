@@ -3,7 +3,6 @@ import { Property } from "#/data/types";
 import styles from "#/styles/property-detail.module.css";
 import { useMemo } from "react";
 import { FaBed, FaBath, FaRuler, FaWind, FaCalendar, FaTree, FaRegBuilding, FaRobot, FaWater, FaDollarSign } from "react-icons/fa";
-import { PropertyInfo } from "../property";
 import type { IconType } from "react-icons";
 import { Button } from "../button";
 

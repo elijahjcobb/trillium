@@ -44,7 +44,7 @@ export default function Page() {
 				<Button type="submit" form="contactForm" value="Submit" />
 			</div>
 			<div className={styles.right}>
-				<Image src={contactImage} alt='contact' width={360} />
+				<Image src={contactImage} alt='contact' width={300} />
 				<ContactRow icon={FaMapMarkedAlt} href='https://goo.gl/maps/fwQeyg8EtM39JdzV9' value="Traverse City, MI" />
 				<ContactRow icon={FaPhone} href='tel:+12102868954' value="Erica: 210-286-8954" />
 				<ContactRow icon={FaPhone} href='tel:+12314097712' value="Laura: 231-409-7712" />
