@@ -3,8 +3,8 @@ import { Callout } from "#/components/home/callout";
 import { Nav } from "#/components/nav";
 import { Property } from "#/components/property";
 import { BATHS, BEDS, CITIES, ONE_DAY, PRICE_BRACKETS, PROPERTY_TYPES, SQFT, YEAR_BUILT } from "#/data/constants";
-import { Property as PropertyType, Query } from "#/data/types";
-import { search, topProperties } from "#/helpers/search";
+import { Property as PropertyType } from "#/data/types";
+import { topProperties } from "#/helpers/search";
 import { GetStaticProps } from "next";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "#/styles/search.module.css";
@@ -13,9 +13,6 @@ import { Button } from "#/components/button";
 import { FaSearch } from "react-icons/fa";
 import { convertBracketsToQuery } from "#/helpers/convert";
 import { fetcher } from "#/helpers/fetcher";
-import { useAutoAnimate } from '@formkit/auto-animate/react'
-import { useRouter } from "next/router";
-
 
 interface Props {
 	properties: PropertyType[];
@@ -32,36 +29,48 @@ export default function Page(props: Props) {
 	const [sqft, setSqft] = useState(0);
 	const [year, setYear] = useState(0);
 	const [loading, setLoading] = useState(false);
-	const [parent] = useAutoAnimate<HTMLDivElement>();
 	const hasInitialUpdate = useRef(false);
 
-	const update = useCallback(() => {
+	const update = useCallback((initial?: { city: number, price: number, type: number }) => {
+		console.log("START UPDATE");
 		setLoading(true);
+		console.log({ city })
 		const query = convertBracketsToQuery({
-			city, type, price: priceBracket, beds, baths, sqft, yearBuilt: year
+			city: initial?.city ?? city,
+			type: initial?.type ?? type,
+			price: initial?.price ?? priceBracket,
+			beds, baths, sqft, yearBuilt: year
 		});
+		console.log({ query });
 		fetcher<PropertyType[]>({
 			path: '/search',
 			method: "POST",
 			body: query
 		}).then((p) => {
+			console.log("SUCCESS");
 			setProperties(p);
 		}).catch(console.error).finally(() => {
 			setLoading(false);
+			console.log("DONE UPDATE");
 		})
 	}, [city, type, priceBracket, beds, baths, sqft, year]);
 
 	useEffect(() => {
+
+		if (hasInitialUpdate.current) return;
+
 		const url = window.location.search;
 		if (!url) return;
 		const params = new URLSearchParams(url);
 
 		let doUpdate = false;
+		let initial = { city: 0, price: 0, type: 0 };
 
 		if (params.has('city')) {
 			const c = parseInt(params.get('city')!);
 			if (!Number.isNaN(c) && c !== 0) {
 				setCity(c);
+				initial.city = c;
 				doUpdate = true;
 			}
 
@@ -70,6 +79,7 @@ export default function Page(props: Props) {
 			const c = parseInt(params.get('price')!);
 			if (!Number.isNaN(c) && c !== 0) {
 				setPriceBracket(c);
+				initial.price = c;
 				doUpdate = true;
 			}
 		}
@@ -77,14 +87,13 @@ export default function Page(props: Props) {
 			const c = parseInt(params.get('type')!);
 			if (!Number.isNaN(c) && c !== 0) {
 				setType(c);
+				initial.type = c;
 				doUpdate = true;
 			}
 		}
 
-		window.history.replaceState(null, '', '/search');
-
 		if (doUpdate && !hasInitialUpdate.current) {
-			update();
+			update(initial);
 			hasInitialUpdate.current = true;
 		}
 	}, [update]);
@@ -102,7 +111,7 @@ export default function Page(props: Props) {
 			<div className={styles.spacer} />
 			<Button disabled={loading} onClick={update} value="Update" icon={FaSearch} />
 		</div>
-		<div className={styles.properties} ref={parent}>
+		<div className={styles.properties}>
 			{properties.map(p => <Property key={p.mls} property={p} />)}
 		</div>
 		<Callout

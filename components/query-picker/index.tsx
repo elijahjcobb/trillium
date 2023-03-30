@@ -49,7 +49,8 @@ export function QueryPicker(): JSX.Element {
 		params.set('city', `${city}`);
 		params.set('type', `${type}`);
 		params.set('price', `${priceBracket}`);
-		router.push(`/search?${params.toString()}`)
+		const url = `/search?${params.toString()}`;
+		router.push(url)
 	}, [city, priceBracket, type, router]);
 
 	return <div className={styles.container}>
