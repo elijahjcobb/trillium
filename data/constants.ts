@@ -30,7 +30,8 @@ export const PRICE_BRACKETS: string[] = [
   "> 3m",
 ];
 
-export const ONE_DAY = 60 * 60 * 24;
+export const ONE_HOUR = 60 * 60;
+export const ONE_DAY = ONE_HOUR * 24;
 
 export const BEDS: string[] = [
   "Any",

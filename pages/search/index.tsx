@@ -1,8 +1,7 @@
 import { Footer } from "#/components/footer";
 import { Callout } from "#/components/home/callout";
 import { Nav } from "#/components/nav";
-import { Property } from "#/components/property";
-import { BATHS, BEDS, CITIES, ONE_DAY, PRICE_BRACKETS, PROPERTY_TYPES, SQFT, YEAR_BUILT } from "#/data/constants";
+import { BATHS, BEDS, CITIES, ONE_DAY, ONE_HOUR, PRICE_BRACKETS, PROPERTY_TYPES, SQFT, YEAR_BUILT } from "#/data/constants";
 import { Property as PropertyType } from "#/data/types";
 import { topProperties } from "#/helpers/search";
 import { GetStaticProps } from "next";
@@ -13,6 +12,8 @@ import { Button } from "#/components/button";
 import { FaSearch } from "react-icons/fa";
 import { convertBracketsToQuery } from "#/helpers/convert";
 import { fetcher } from "#/helpers/fetcher";
+import { TTL_ONE_DAY, withCache } from "#/helpers/cache";
+import { Property } from "#/components/property";
 
 interface Props {
 	properties: PropertyType[];
@@ -127,6 +128,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 		props: {
 			properties: await topProperties(30)
 		},
-		revalidate: ONE_DAY,
+		revalidate: ONE_HOUR,
 	}
 }
