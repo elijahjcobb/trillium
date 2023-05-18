@@ -4,15 +4,94 @@
 
 .images {
   height: 30vh;
-  overflow: hidden;
   display: flex;
   overflow-x: auto;
   gap: var(--sp);
 }
 
+.imageWrapper {
+  background: none;
+  outline: none;
+  border: none;
+  overflow: hidden;
+  display: inline;
+  height: 100%;
+  cursor: pointer;
+}
+
+.fullScreenContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 99999999999999;
+  display: none;
+  outline: none;
+  border: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.fullScreenImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.previousButton,
+.nextButton,
+.closeButton {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  cursor: pointer;
+  bottom: 24px;
+  border-radius: 8px;
+  border: solid 1px var(--acc2);
+  background: var(--acc1);
+  transition: transform 125ms ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px var(--acc3);
+}
+
+.previousButton:hover,
+.nextButton:hover,
+.closeButton:hover {
+  transform: scale(1.05);
+}
+
+.nextButton {
+  right: 24px;
+}
+
+.previousButton {
+  left: 24px;
+}
+
+.closeButton {
+  top: 24px;
+  left: 24px;
+  bottom: unset;
+}
+
+.showFullScreen {
+  display: flex;
+}
+
+.imageWrapper:hover img {
+  transform: scale(1.0625);
+}
+
 .images img {
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  height: 100%;
+  transition: transform 250ms ease-in-out;
 }
 
 .right {
@@ -39,12 +118,12 @@
     max-height: 80vh;
   }
 
-  .images img:first-child {
+  .images .imageWrapper:first-child {
     width: 600px;
     height: 400px;
   }
 
-  .images img {
+  .images .imageWrapper {
     width: 298px;
     object-fit: cover;
     object-position: center;
