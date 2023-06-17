@@ -25,6 +25,7 @@ export default function Page() {
 		</div>
 		<Callout
 			title="Start the selling process"
+			href="/contact?goal=sell"
 			subtitle="Let's chat, we would be happy to list your house. Let's start the process today!"
 			cta="List My House"
 		/>

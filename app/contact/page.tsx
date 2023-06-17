@@ -15,8 +15,13 @@ function ContactRow({ icon: Icon, value, href }: { icon: IconType, value: string
 		<span>{value}</span>
 	</Link>
 }
+export default async function Page({ searchParams }: {
+	searchParams: {
+		goal?: string;
+		message?: string;
+	}
+}) {
 
-export default function Page() {
 	return <div className={styles.contact}>
 		<div className={styles.left}>
 			<h2>Contact the Trillium Partners</h2>
@@ -30,14 +35,15 @@ export default function Page() {
 				<label htmlFor='phone'>Phone: *</label>
 				<input id='phone' required name='phone' type='tel' autoComplete="tel" placeholder="Enter your phone" />
 				<label htmlFor="goal">I want to:</label>
-				<select id="goal" name="goal">
+				<select defaultValue={searchParams.goal} id="goal" name="goal">
+					<option value="chat">Chat</option>
 					<option value="buy">Buy</option>
 					<option value="sell">Sell</option>
 					<option value="rent">Rent</option>
 					<option value="other">Other</option>
 				</select>
 				<label htmlFor="message">Anything you want to say:</label>
-				<textarea id='message' name="message" rows={8} cols={30} placeholder="Tell us more..." />
+				<textarea defaultValue={searchParams.message} id='message' name="message" rows={8} cols={30} placeholder="Tell us more..." />
 			</form>
 			<Button type="submit" form="contactForm" value="Submit" />
 		</div>

@@ -26,6 +26,7 @@ export default function Page() {
 		<Callout
 			title="Start the buying process"
 			cta="Start Buying Today"
+			href="/contact?goal=buy"
 			subtitle="Whether you are ready or not quite yet, reach out and we would be happy to start the process."
 		/>
 	</>

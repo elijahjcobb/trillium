@@ -9,6 +9,7 @@ import type { IconType } from "react-icons";
 import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import { Button } from "../button";
 import classNames from "classnames";
+import Link from "next/link";
 
 function PropertySpec({ icon: Icon, value }: { icon: IconType, value: string }): JSX.Element {
 	return <li className={styles.spec}>
@@ -138,7 +139,7 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 		</div>
 		<div className={styles.right}>
 			<p className={styles.price}>{price}</p>
-			<p className={styles.address}>{property.address}</p>
+			<Link href={`https://www.google.com/maps/place/${property.address},+${property.zip}`} target="_blank" className={styles.address}>{property.address}</Link>
 			<ul className={styles.specs}>
 				<PropertySpec icon={FaBed} value={bedrooms} />
 				<PropertySpec icon={FaBath} value={bathrooms} />
