@@ -1,20 +1,24 @@
+"use client";
 import { Button } from "../button";
 import { FaSearch } from 'react-icons/fa';
 import styles from "./index.module.css";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { CITIES, PRICE_BRACKETS, PROPERTY_TYPES } from "#/data/constants";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { track } from "@vercel/analytics";
 
 export function Select({
 	value,
 	label,
 	options,
-	onSelect
+	onSelect,
+	name
 }: {
 	value?: number;
 	label: string;
 	onSelect?: (value: number) => void;
 	options: string[];
+	name?: string;
 }): JSX.Element {
 
 	const handleChange = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
@@ -29,7 +33,7 @@ export function Select({
 		<div className={styles.itemTop}>
 			<span className={styles.label}>{label}</span>
 		</div>
-		<select value={value} onChange={handleChange}>
+		<select name={name} value={value} onChange={handleChange}>
 			{optionsMemoized}
 		</select>
 	</div>
@@ -43,6 +47,7 @@ export function QueryPicker(): JSX.Element {
 	const router = useRouter();
 
 	const search = useCallback(() => {
+		track("hero-query-picker", { city, type, priceBracket });
 		const params = new URLSearchParams();
 		params.set('city', `${city}`);
 		params.set('type', `${type}`);

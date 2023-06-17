@@ -5,7 +5,6 @@ import styles from "#/styles/generic.module.css";
 
 export default function Page() {
 	return <>
-		<Nav />
 		<div className={styles.container}>
 			<section>
 				<h2>{`Sell Your Home with Confidence`}</h2>
@@ -25,10 +24,11 @@ export default function Page() {
 			</section>
 		</div>
 		<Callout
+			location='selling'
 			title="Start the selling process"
+			href="/contact?goal=sell"
 			subtitle="Let's chat, we would be happy to list your house. Let's start the process today!"
 			cta="List My House"
 		/>
-		<Footer />
 	</>
 }

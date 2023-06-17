@@ -9,7 +9,6 @@ import lauraImage from "#/public/laura.png";
 
 export default function Page() {
 	return <>
-		<Nav />
 		<div className={styles.container}>
 			<article>
 				<Image width={300} src={standingImage} alt='erica and laura standing' />
@@ -42,10 +41,10 @@ export default function Page() {
 			</article>
 		</div>
 		<Callout
+			location='about'
 			title="Let's talk"
 			subtitle="We would be happy to list your house, or help you find a new one. Let's start the process today!"
 			cta="Take Action"
 		/>
-		<Footer />
 	</>
 }

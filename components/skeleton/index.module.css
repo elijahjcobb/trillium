@@ -1,0 +1,26 @@
+.skeleton {
+  display: block;
+  background-color: var(--acc1);
+  border: solid 1px var(--acc2);
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer {
+  background: var(--acc2);
+  filter: blur(20px);
+  position: absolute;
+  width: 20%;
+  height: 100%;
+  animation: move 2s ease-in-out forwards infinite;
+}
+
+@keyframes move {
+  from,
+  to {
+    left: 0;
+  }
+  50% {
+    left: 80%;
+  }
+}

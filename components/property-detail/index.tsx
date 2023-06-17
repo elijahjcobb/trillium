@@ -1,3 +1,4 @@
+"use client";
 /* eslint-disable @next/next/no-img-element */
 import { Property } from "#/data/types";
 import styles from "#/styles/property-detail.module.css";
@@ -5,8 +6,10 @@ import { Dispatch, MouseEvent, SetStateAction, useCallback, useEffect, useMemo, 
 import { FaBed, FaBath, FaRuler, FaWind, FaCalendar, FaTree, FaRegBuilding, FaRobot, FaWater, FaDollarSign } from "react-icons/fa";
 import { IoClose, IoChevronBack, IoChevronForward } from "react-icons/io5";
 import type { IconType } from "react-icons";
+import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import { Button } from "../button";
 import classNames from "classnames";
+import Link from "next/link";
 
 function PropertySpec({ icon: Icon, value }: { icon: IconType, value: string }): JSX.Element {
 	return <li className={styles.spec}>
@@ -75,8 +78,19 @@ function FullScreenImage({
 		return () => document.removeEventListener("keydown", listener);
 	}, [nextImage, previousImage, close]);
 
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		setIsLoading(true);
+	}, [index])
+
+	const handleOnLoad = useCallback(() => {
+		setIsLoading(false);
+	}, []);
+
 	return <button onClick={close} className={classNames(styles.fullScreenContainer, index !== null && styles.showFullScreen)}>
-		<img src={currentImage} alt='property shot' className={styles.fullScreenImage} />
+		<img style={{ filter: `opacity(${isLoading ? 0 : 1})` }} onLoad={handleOnLoad} src={currentImage} alt='property shot' className={styles.fullScreenImage} />
+		<AiOutlineLoading3Quarters className={styles.loader} />
 		<button className={styles.previousButton} onClick={previousImage}><IoChevronBack size={24} /></button>
 		<button className={styles.nextButton} onClick={nextImage}><IoChevronForward size={24} /></button>
 		<button className={styles.closeButton}><IoClose size={24} /></button>
@@ -88,7 +102,7 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 	const price = useMemo(() => `$${property.listPrice.toLocaleString()}`, [property.listPrice]);
 	const sqft = useMemo(() => `${property.sqft.toLocaleString()} sqft`, [property.sqft]);
 	const builtIn = useMemo(() => `Built in ${property.yearBuilt}`, [property.yearBuilt]);
-	const acres = useMemo(() => `${property.acres} Acres`, [property.acres]);
+	const acres = useMemo(() => `${property.acres.toFixed(1)} Acres`, [property.acres]);
 	const pricePerSQFT = useMemo(() => `$${Math.floor(property.listPrice / property.sqft)} price/sqft`, [property.listPrice, property.sqft]);
 	const appliances = useMemo(() => property.appliances.join(", "), [property.appliances]);
 	const hvac = useMemo(() => property.hvac.join(", "), [property.hvac]);
@@ -125,7 +139,7 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 		</div>
 		<div className={styles.right}>
 			<p className={styles.price}>{price}</p>
-			<p className={styles.address}>{property.address}</p>
+			<Link href={`https://www.google.com/maps/place/${property.address},+${property.zip}`} target="_blank" className={styles.address}>{property.address}</Link>
 			<ul className={styles.specs}>
 				<PropertySpec icon={FaBed} value={bedrooms} />
 				<PropertySpec icon={FaBath} value={bathrooms} />

@@ -1,3 +1,4 @@
+"use client";
 import { IconType } from "react-icons"
 import styles from "./index.module.css";
 import { cn } from "#/helpers/cn";
@@ -20,7 +21,7 @@ export function Button({
 	newTab = false
 }: {
 	value: string,
-	icon?: IconType,
+	icon?: IconType | JSX.Element,
 	disabled?: boolean;
 	onClick?: () => void;
 	href?: string;
@@ -47,7 +48,7 @@ export function Button({
 			disabled && styles.disabled
 		)}
 	>
-		{Icon ? <Icon /> : null}
+		{Icon ? typeof Icon === 'function' ? <Icon /> : Icon : null}
 		<span>{value}</span>
 		{PostIcon ? <PostIcon /> : null}
 	</Element>

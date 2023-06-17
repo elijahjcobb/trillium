@@ -9,27 +9,18 @@ import { ONE_DAY, ONE_HOUR } from "#/data/constants";
 import { Property } from "#/data/types";
 import { topProperties } from "#/helpers/search";
 import styles from "#/styles/index.module.css";
-import { GetStaticProps } from "next";
 
-export default function Page({ properties }: { properties: Property[] }): JSX.Element {
+export default async function Page(): Promise<JSX.Element> {
+
+  const properties = await topProperties();
+
   return <div className={styles.page}>
-    <Nav />
     <div className={styles.hero}>
       <Hero />
     </div>
     <Properties properties={properties} />
     <Agents />
     <Testimonials />
-    <Callout cta='Contact an Agent' subtitle="Whether you would like to buy or list, reach out and we would be happy to start the process." />
-    <Footer />
+    <Callout location="home" cta='Contact an Agent' subtitle="Whether you would like to buy or list, reach out and we would be happy to start the process." />
   </div>
-}
-
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    revalidate: ONE_HOUR,
-    props: {
-      properties: await topProperties()
-    }
-  }
 }

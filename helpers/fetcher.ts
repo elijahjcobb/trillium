@@ -1,13 +1,19 @@
+export const REVALIDATE_DEFAULT = 3600;
+
 export async function fetcher<T>({
   url,
   path,
   method = "GET",
   body,
+  revalidate,
+  tags,
 }: {
   url?: string;
   path?: string;
   method?: "GET" | "POST";
   body?: object;
+  revalidate?: number | false;
+  tags?: string[];
 }): Promise<T> {
   let realUrl = url;
   if (path) {
@@ -18,6 +24,10 @@ export async function fetcher<T>({
   const res = await fetch(realUrl, {
     method,
     body: body ? JSON.stringify(body) : null,
+    next: {
+      revalidate,
+      tags,
+    },
   });
   if (!res.ok)
     throw new Error(

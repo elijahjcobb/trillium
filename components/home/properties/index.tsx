@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "#/components/button";
 import { Property } from "#/components/property";
 import { FaArrowRight } from "react-icons/fa";

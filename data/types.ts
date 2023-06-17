@@ -26,6 +26,8 @@ export interface Query {
   page?: number;
   county?: string;
   city?: string;
+  tags?: string[];
+  revalidate?: number | false;
 }
 
 export interface Property {

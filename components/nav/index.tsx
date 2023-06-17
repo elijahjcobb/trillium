@@ -1,3 +1,4 @@
+"use client";
 import { LINKS } from "#/data/links";
 import { Link as LinkType } from "#/data/types";
 import Link from "next/link";
