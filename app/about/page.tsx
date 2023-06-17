@@ -41,6 +41,7 @@ export default function Page() {
 			</article>
 		</div>
 		<Callout
+			location='about'
 			title="Let's talk"
 			subtitle="We would be happy to list your house, or help you find a new one. Let's start the process today!"
 			cta="Take Action"

@@ -24,6 +24,7 @@ export default function Page() {
 			</section>
 		</div>
 		<Callout
+			location='selling'
 			title="Start the selling process"
 			href="/contact?goal=sell"
 			subtitle="Let's chat, we would be happy to list your house. Let's start the process today!"

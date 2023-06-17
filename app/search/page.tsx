@@ -29,6 +29,7 @@ export default async function Page({ searchParams }: { searchParams: { city: str
 	return <>
 		<Properties properties={properties} />
 		<Callout
+			location='search'
 			subtitle="If you have found something you like, let us know, we can start the process today."
 			cta="Start the buying process"
 			href="/contact?goal=buy"

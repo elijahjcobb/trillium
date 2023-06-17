@@ -5,6 +5,7 @@ import styles from "./index.module.css";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { CITIES, PRICE_BRACKETS, PROPERTY_TYPES } from "#/data/constants";
 import { useRouter } from "next/navigation";
+import { track } from "@vercel/analytics";
 
 export function Select({
 	value,
@@ -46,6 +47,7 @@ export function QueryPicker(): JSX.Element {
 	const router = useRouter();
 
 	const search = useCallback(() => {
+		track("hero-query-picker", { city, type, priceBracket });
 		const params = new URLSearchParams();
 		params.set('city', `${city}`);
 		params.set('type', `${type}`);

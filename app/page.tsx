@@ -21,6 +21,6 @@ export default async function Page(): Promise<JSX.Element> {
     <Properties properties={properties} />
     <Agents />
     <Testimonials />
-    <Callout cta='Contact an Agent' subtitle="Whether you would like to buy or list, reach out and we would be happy to start the process." />
+    <Callout location="home" cta='Contact an Agent' subtitle="Whether you would like to buy or list, reach out and we would be happy to start the process." />
   </div>
 }

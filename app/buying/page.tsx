@@ -24,6 +24,7 @@ export default function Page() {
 			</section>
 		</div>
 		<Callout
+			location='buying'
 			title="Start the buying process"
 			cta="Start Buying Today"
 			href="/contact?goal=buy"

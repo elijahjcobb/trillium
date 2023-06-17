@@ -11,6 +11,7 @@ import { FormEvent, useCallback, useEffect, useState } from "react";
 import { fetchPropertiesForQuery } from "./actions";
 import { Skeleton } from "#/components/skeleton";
 import { useSearchParams } from "next/navigation";
+import { track } from "@vercel/analytics";
 
 export function Properties(props: { properties: PropertyType[] }): JSX.Element {
 
@@ -21,6 +22,7 @@ export function Properties(props: { properties: PropertyType[] }): JSX.Element {
 		event.preventDefault();
 		setProperties([]);
 		const formData = new FormData(event.currentTarget);
+		track("search", Object.fromEntries(formData.entries()) as Record<string, string>);
 		fetchPropertiesForQuery(formData).then(setProperties);
 	}, []);
 

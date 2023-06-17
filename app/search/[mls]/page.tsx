@@ -12,6 +12,7 @@ export default async function Page({ params }: { params: { mls: string } }) {
 	return <>
 		<PropertyDetail property={property} />
 		<Callout
+			location='property'
 			cta="Start the Buying Process"
 			href={`/contact?goal=buy&message=I+am+interested+in+the+property+with+MLS+${property.mls}`}
 			title="Like what you see?"
