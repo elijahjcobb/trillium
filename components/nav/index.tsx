@@ -8,12 +8,12 @@ import { useCallback, useMemo, useState } from "react";
 import { Button, RawButton } from "../button";
 import { FaGripLines } from "react-icons/fa";
 
-function NavItem({ link }: { link: LinkType }): JSX.Element {
+function NavItem({ link, onClick }: { link: LinkType, onClick?: () => void; }): JSX.Element {
 
 	const href = useMemo(() => `/${link.href ?? link.name}`, [link]);
 
 	return <li className={styles.listItem}>
-		<Link className={styles.link} href={href}>
+		<Link onClick={onClick} className={styles.link} href={href}>
 			{link.name}
 		</Link>
 	</li>
@@ -45,7 +45,7 @@ export function Nav(): JSX.Element {
 			</RawButton>
 			<div style={{ display: showNav ? "flex" : "none" }} className={styles.mobileMenu}>
 				<ul className={styles.mobileList}>
-					{LINKS.map(link => <NavItem key={link.name} link={link} />)}
+					{[...LINKS, { href: "contact", name: "Contact" }].map(link => <NavItem onClick={() => setShowNav(false)} key={link.name} link={link} />)}
 				</ul>
 			</div>
 		</div>

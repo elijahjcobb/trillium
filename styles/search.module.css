@@ -1,6 +1,6 @@
 .properties {
   display: grid;
-  grid-template-columns: repeat(3, 370px);
+  grid-template-columns: repeat(1, 370px);
   align-items: center;
   justify-items: center;
   justify-content: center;
@@ -34,5 +34,14 @@
 @media (min-width: 900px) {
   .queryBar {
     display: flex;
+  }
+  .properties {
+    grid-template-columns: repeat(2, 370px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .properties {
+    grid-template-columns: repeat(3, 370px);
   }
 }

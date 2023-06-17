@@ -131,6 +131,7 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 			{property.images.map((image, i) => {
 				return <button onClick={() => setFullScreenIndex(i)} key={image} className={styles.imageWrapper}>
 					<img
+						className={styles.image}
 						loading="lazy"
 						src={image}
 						alt='property image' />

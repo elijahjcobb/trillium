@@ -3,7 +3,7 @@
 }
 
 .images {
-  height: 30vh;
+  height: 40vh;
   display: flex;
   overflow-x: auto;
   gap: var(--sp);
@@ -17,10 +17,15 @@
   display: inline;
   height: 100%;
   cursor: pointer;
+  min-width: 80vw;
+}
+
+.image {
+  object-fit: cover;
 }
 
 .fullScreenContainer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -121,7 +126,7 @@
   padding: var(--sp2);
 }
 
-@media (min-width: 800px) {
+@media (min-width: 1100px) {
   .container {
     display: grid;
     grid-template-columns: auto 480px;
@@ -152,6 +157,10 @@
     object-position: center;
     overflow: hidden;
     height: 198px;
+  }
+
+  .imageWrapper {
+    min-width: unset;
   }
 
   .right {
