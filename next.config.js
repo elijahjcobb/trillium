@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ["via.placeholder.com", "property-media.realgeeks.com"],
   },
+  experimental: {
+    serverActions: true,
+  },
 };
 
 module.exports = nextConfig;

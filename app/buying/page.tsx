@@ -5,7 +5,6 @@ import styles from "#/styles/generic.module.css";
 
 export default function Page() {
 	return <>
-		<Nav />
 		<div className={styles.container}>
 			<section>
 				<h2>{`Find Your Dream Home with the Trillium Partners`}</h2>
@@ -29,6 +28,5 @@ export default function Page() {
 			cta="Start Buying Today"
 			subtitle="Whether you are ready or not quite yet, reach out and we would be happy to start the process."
 		/>
-		<Footer />
 	</>
 }

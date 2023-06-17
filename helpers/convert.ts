@@ -82,8 +82,6 @@ export function convertBracketsToQuery(raw: RawQuery): Query {
       break;
   }
 
-  console.log({ c: CITIES, raw: raw.city });
-
   return {
     city: raw.city > 0 ? CITIES[raw.city].replace(" ", "+") : undefined,
     type,
