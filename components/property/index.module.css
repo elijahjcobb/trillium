@@ -63,11 +63,18 @@
   color: var(--pri);
 }
 
-.sep {
+.infos > *::after {
+  content: "";
+  position: relative;
+  left: calc(var(--sp) * 0.5);
   width: 2px;
   border-radius: 2px;
   background: var(--acc2);
   height: 20px;
+}
+
+.infos > *:last-child::after {
+  display: none;
 }
 
 @media (min-width: 860px) {

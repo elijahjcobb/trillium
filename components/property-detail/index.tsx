@@ -100,10 +100,13 @@ function FullScreenImage({
 export function PropertyDetail({ property }: { property: Property }): JSX.Element {
 
 	const price = useMemo(() => `$${property.listPrice.toLocaleString()}`, [property.listPrice]);
-	const sqft = useMemo(() => `${property.sqft.toLocaleString()} sqft`, [property.sqft]);
 	const builtIn = useMemo(() => `Built in ${property.yearBuilt}`, [property.yearBuilt]);
 	const acres = useMemo(() => `${property.acres.toFixed(1)} Acres`, [property.acres]);
-	const pricePerSQFT = useMemo(() => `$${Math.floor(property.listPrice / property.sqft)} price/sqft`, [property.listPrice, property.sqft]);
+	const pricePerSQFT = useMemo(() => {
+		if (property.sqft > 0)
+			return `$${Math.floor(property.listPrice / property.sqft).toLocaleString()} per sqft`
+		return `$${Math.floor(property.listPrice / property.acres).toLocaleString()} per acre`
+	}, [property.acres, property.listPrice, property.sqft]);
 	const appliances = useMemo(() => property.appliances.join(", "), [property.appliances]);
 	const hvac = useMemo(() => property.hvac.join(", "), [property.hvac]);
 	const water = useMemo(() => property.water === 'municipal' ? "Private Well" : "City Water", [property.water]);
@@ -122,6 +125,11 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 
 	const bedrooms = useMemo(() => `${property.bedrooms} bedrooms`, [property.bedrooms]);
 	const bathrooms = useMemo(() => `${property.bedrooms} bathrooms`, [property.bedrooms]);
+	const sqft = useMemo(() => {
+		return property.sqft;
+	}, [property.sqft]);
+
+	const sqftString = useMemo(() => `${sqft.toLocaleString()} sqft`, [sqft]);
 
 	const [fullScreenIndex, setFullScreenIndex] = useState<number | null>(null);
 
@@ -142,16 +150,16 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 			<p className={styles.price}>{price}</p>
 			<Link href={`https://www.google.com/maps/place/${property.address},+${property.zip}`} target="_blank" className={styles.address}>{property.address}</Link>
 			<ul className={styles.specs}>
-				<PropertySpec icon={FaBed} value={bedrooms} />
-				<PropertySpec icon={FaBath} value={bathrooms} />
-				<PropertySpec icon={FaRuler} value={sqft} />
+				{property.bedrooms === 0 ? null : <PropertySpec icon={FaBed} value={bedrooms} />}
+				{property.baths === 0 ? null : <PropertySpec icon={FaBath} value={bathrooms} />}
+				{sqft === 0 ? null : <PropertySpec icon={FaRuler} value={sqftString} />}
 				<PropertySpec icon={FaRegBuilding} value={type} />
 				<PropertySpec icon={FaCalendar} value={builtIn} />
 				<PropertySpec icon={FaWater} value={water} />
-				<PropertySpec icon={FaWind} value={hvac} />
+				{hvac === "" ? null : <PropertySpec icon={FaWind} value={hvac} />}
 				<PropertySpec icon={FaTree} value={acres} />
 				<PropertySpec icon={FaDollarSign} value={pricePerSQFT} />
-				<PropertySpec icon={FaRobot} value={appliances} />
+				{appliances === "" ? null : <PropertySpec icon={FaRobot} value={appliances} />}
 			</ul>
 			{property.virtualTour ? <Button newTab href={property.virtualTour} value="View Virtual Tour" /> : null}
 		</div>

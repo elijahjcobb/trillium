@@ -33,7 +33,11 @@ export function Property({
 		return `${property.city}, ${property.zip}`
 	}, [property.city, property.zip]);
 
-	const formattedSqft = useMemo(() => property.sqft.toLocaleString(), [property.sqft]);
+	const sqft = useMemo(() => {
+		if (property.sqft === 0) return property.lotSqft;
+		return property.sqft;
+	}, [property.lotSqft, property.sqft]);
+	const formattedSqft = useMemo(() => sqft.toLocaleString(), [sqft]);
 
 	return <Link href={`/search/${property.mls}`} className={styles.card}>
 		<div className={styles.imageContainer}>
@@ -44,11 +48,9 @@ export function Property({
 			<p className={styles.address}>{formattedAddress}</p>
 			<p className={styles.price}>{formattedPrice}</p>
 			<div className={styles.infos}>
-				<PropertyInfo value={`${property.bedrooms} beds`} icon={FaBed} />
-				<div className={styles.sep} />
-				<PropertyInfo value={`${property.bedrooms} baths`} icon={FaBath} />
-				<div className={styles.sep} />
-				<PropertyInfo value={`${formattedSqft} sqft`} icon={FaRuler} />
+				{property.bedrooms === 0 ? null : <PropertyInfo value={`${property.bedrooms} beds`} icon={FaBed} />}
+				{property.baths === 0 ? null : <PropertyInfo value={`${property.baths} baths`} icon={FaBath} />}
+				{sqft === 0 ? null : <PropertyInfo value={`${formattedSqft} sqft`} icon={FaRuler} />}
 			</div>
 		</div>
 	</Link>
