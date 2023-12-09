@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run open && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "open": "open -a \"Google Chrome\" http://localhost:3000"
   },
   "dependencies": {
     "@formkit/auto-animate": "1.0.0-beta.6",
