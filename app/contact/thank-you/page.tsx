@@ -4,8 +4,6 @@ import contactImage from "#/public/both.png";
 import Link from "next/link";
 import type { IconType } from "react-icons";
 import { FaMapMarkedAlt, FaPhone, FaEnvelope } from "react-icons/fa";
-import { Button } from "#/components/button";
-import { contact } from "./actions";
 
 function ContactRow({ icon: Icon, value, href }: { icon: IconType, value: string, href: string }) {
 	return <Link target={'_blank'} className={styles.row} href={href}>
@@ -15,13 +13,7 @@ function ContactRow({ icon: Icon, value, href }: { icon: IconType, value: string
 		<span>{value}</span>
 	</Link>
 }
-export default async function Page({ searchParams }: {
-	searchParams: {
-		goal?: string;
-		message?: string;
-	}
-}) {
-
+export default function Page(): JSX.Element {
 	return <div className={styles.contact}>
 		<div className={styles.left}>
 			<h2>Thank you!</h2>
