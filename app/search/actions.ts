@@ -1,8 +1,8 @@
 "use server";
 
 import { Property } from "#/data/types";
-import { convertBracketsToQuery } from "#/helpers/convert";
-import { search } from "#/helpers/search";
+import { convertBracketsToQuery } from "#/lib/convert";
+import { search } from "#/lib/search";
 
 export async function fetchPropertiesForQuery(
   data: FormData

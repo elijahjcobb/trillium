@@ -4,10 +4,7 @@ import { Callout } from "#/components/home/callout";
 import { Hero } from "#/components/home/hero";
 import { Properties } from "#/components/home/properties";
 import { Testimonials } from "#/components/home/testimonials";
-import { Nav } from "#/components/nav";
-import { ONE_DAY, ONE_HOUR } from "#/data/constants";
-import { Property } from "#/data/types";
-import { topProperties } from "#/helpers/search";
+import { topProperties } from "#/lib/search";
 import styles from "#/styles/index.module.css";
 
 export default async function Page(): Promise<JSX.Element> {

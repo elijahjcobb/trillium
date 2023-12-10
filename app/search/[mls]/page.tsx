@@ -1,6 +1,6 @@
 import { Callout } from "#/components/home/callout";
 import { PropertyDetail } from "#/components/property-detail";
-import { propertyById } from "#/helpers/search";
+import { propertyById } from "#/lib/search";
 
 export default async function Page({ params }: { params: { mls: string } }) {
 	const property = await propertyById(params.mls);
