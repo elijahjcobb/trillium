@@ -1,7 +1,7 @@
 import { Callout } from "#/components/home/callout";
 import { Property } from "#/data/types";
-import { convertBracketsToQuery } from "#/helpers/convert";
-import { search, topProperties } from "#/helpers/search";
+import { convertBracketsToQuery } from "#/lib/convert";
+import { search, topProperties } from "#/lib/search";
 import { Properties } from "./properties";
 
 export const dynamic = 'force-dynamic'

@@ -1,7 +1,7 @@
 "use client";
 import { IconType } from "react-icons"
 import styles from "./index.module.css";
-import { cn } from "#/helpers/cn";
+import { cn } from "#/lib/cn";
 import { useCallback, useMemo } from "react";
 import Link from "next/link";
 
