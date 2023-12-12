@@ -1,17 +1,8 @@
-import { NextResponse } from "next/server";
+import { CronEmailTemplate } from "#/components/email/cron";
+import { resend, EMAIL_ADDRESSES } from "#/lib/email";
+import { NextRequest, NextResponse } from "next/server";
 
-// paths
-// https://vercel.com/api/web/insights/stats/path?environment=preview&filter={}&from=2023-12-06T00:00:00.000Z&limit=250&projectId=trillium-partners&teamId=team_vnv82uVvLJJyvnsiNdcx3zd8&to=2023-12-13T00:00:00.000Z
-
-// events
-// https://vercel.com/api/web/insights/stats/event_name?environment=preview&filter={}&from=2023-12-06T00:00:00.000Z&limit=250&projectId=trillium-partners&teamId=team_vnv82uVvLJJyvnsiNdcx3zd8&to=2023-12-13T00:00:00.000Z
-
-// specific event
-// https://vercel.com/api/web/insights/stats/event_data?environment=preview&filter={"event_name":{"values":["callout"],"operator":"eq"}}&from=2023-12-06T00:00:00.000Z&jsonProperty=key&limit=250&projectId=trillium-partners&teamId=team_vnv82uVvLJJyvnsiNdcx3zd8&to=2023-12-13T00:00:00.000Z
-
-// x
-// https://vercel.com/api/web/insights/stats/event_data?environment=preview&filter={"event_name":{"values":["callout"],"operator":"eq"}}&from=2023-12-06T00:00:00.000Z&jsonProperty=key&limit=250&projectId=trillium-partners&teamId=team_vnv82uVvLJJyvnsiNdcx3zd8&to=2023-12-13T00:00:00.000Z
-// https://vercel.com/api/web/insights/stats/event_data?filter={"event_name":{"values":["callout"],"operator":"eq"}}&projectId=trillium-partners&teamId=team_vnv82uVvLJJyvnsiNdcx3zd8&limit=250&environment=preview&from=2023-12-06T00:00:00.000Z&to=2023-12-13T00:00:00.000Z
+export const dynamic = "force-dynamic";
 
 async function fetcher<T>(path: string, params: URLSearchParams): Promise<T> {
   params.set("projectId", process.env.VERCEL_PROJECT_ID!);
@@ -21,20 +12,23 @@ async function fetcher<T>(path: string, params: URLSearchParams): Promise<T> {
     "environment",
     process.env.VERCEL_ENV === "production" ? "production" : "preview"
   );
-  params.set("from", "2023-12-06T00:00:00.000Z");
-  params.set("to", "2023-12-13T00:00:00.000Z");
 
-  const url = `https://vercel.com/api/web/insights/stats${path}?${params.toString()}`;
-  console.log({ url });
-  const res = await fetch(url, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${process.env.VERCEL_TOKEN!}`,
-    },
-  });
-  const x = await res.json();
-  console.log(x);
-  return x;
+  params.set(
+    "from",
+    new Date(new Date().getTime() - 1000 * 60 * 60 * 24 * 7).toISOString()
+  );
+  params.set("to", new Date().toISOString());
+
+  const res = await fetch(
+    `https://vercel.com/api/web/insights/stats${path}?${params.toString()}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${process.env.VERCEL_TOKEN!}`,
+      },
+    }
+  );
+  return await res.json();
 }
 
 type PageViews = Record<string, number>;
@@ -92,13 +86,40 @@ async function fetchEventsWithSubdata(): Promise<EventsWithData> {
   return result;
 }
 
-export const GET = async (): Promise<NextResponse> => {
+export interface CronData {
+  pageViews: PageViews;
+  events: EventsWithData;
+}
+
+async function getCronData(): Promise<CronData> {
   const pageViews = await fetchPageViews();
   const events = await fetchEventsWithSubdata();
-  const d = {
+  return {
     pageViews,
     events,
   };
-  console.log(JSON.stringify(d, null, 2));
+}
+
+export const GET = async (request: NextRequest): Promise<NextResponse> => {
+  const authHeader = request.headers.get("authorization");
+  if (
+    process.env.VERCEL_ENV !== "development" &&
+    authHeader !== `Bearer ${process.env.CRON_SECRET}`
+  ) {
+    return NextResponse.json(
+      { error: "unauthorized" },
+      {
+        status: 401,
+      }
+    );
+  }
+
+  const cronData = await getCronData();
+  await resend.emails.send({
+    from: "Trillium Partners Notifications <no-reply@trillium.elijahcobb.app>",
+    to: EMAIL_ADDRESSES,
+    subject: "Website Analytics",
+    react: CronEmailTemplate(cronData),
+  });
   return NextResponse.json({});
 };
