@@ -5,25 +5,29 @@ import styles from "./index.module.css";
 import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { CITIES, PRICE_BRACKETS, PROPERTY_TYPES } from "#/data/constants";
 import { useRouter } from "next/navigation";
-import { track } from "@vercel/analytics";
+import { type TrackFunction, useAnalytics } from "#/helpers/use-analytics";
 
 export function Select({
 	value,
 	label,
 	options,
 	onSelect,
-	name
+	name,
+	trackFunc
 }: {
 	value?: number;
 	label: string;
 	onSelect?: (value: number) => void;
 	options: string[];
 	name?: string;
+	trackFunc?: TrackFunction;
 }): JSX.Element {
 
 	const handleChange = useCallback((event: ChangeEvent<HTMLSelectElement>) => {
-		if (onSelect) onSelect(Number(event.target.value));
-	}, [onSelect]);
+		const index = Number(event.target.value);
+		if (onSelect) onSelect(index);
+		if (trackFunc) trackFunc(label.toLowerCase(), options[index]);
+	}, [label, onSelect, options, trackFunc]);
 
 	const optionsMemoized = useMemo(() => {
 		return options.map((option, i) => <option value={i} key={option}>{option}</option>)
@@ -46,20 +50,22 @@ export function QueryPicker(): JSX.Element {
 	const [priceBracket, setPriceBracket] = useState(0);
 	const router = useRouter();
 
+	const track = useAnalytics("query-picker-mini");
+
 	const search = useCallback(() => {
-		track("hero-query-picker", { city, type, priceBracket });
+		track("search");
 		const params = new URLSearchParams();
 		params.set('city', `${city}`);
 		params.set('type', `${type}`);
 		params.set('price', `${priceBracket}`);
 		const url = `/search?${params.toString()}`;
 		router.push(url)
-	}, [city, priceBracket, type, router]);
+	}, [track, city, type, priceBracket, router]);
 
 	return <div className={styles.container}>
-		<Select label="Location" value={city} onSelect={setCity} options={CITIES} />
-		<Select label="Type" value={type} onSelect={setType} options={PROPERTY_TYPES} />
-		<Select label="Price" value={priceBracket} onSelect={setPriceBracket} options={PRICE_BRACKETS} />
+		<Select trackFunc={track} label="Location" value={city} onSelect={setCity} options={CITIES} />
+		<Select trackFunc={track} label="Type" value={type} onSelect={setType} options={PROPERTY_TYPES} />
+		<Select trackFunc={track} label="Price" value={priceBracket} onSelect={setPriceBracket} options={PRICE_BRACKETS} />
 		<Button value="Search" onClick={search} icon={FaSearch} />
 	</div>
 }

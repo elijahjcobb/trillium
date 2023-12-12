@@ -3,7 +3,7 @@
 import { Button } from "#/components/button";
 import { useCallback } from "react";
 import styles from "./index.module.css";
-import va from "@vercel/analytics";
+import { useAnalytics } from "#/helpers/use-analytics";
 
 export function Callout({
 	title = 'Talk to an Agent',
@@ -19,9 +19,11 @@ export function Callout({
 	location: string
 }) {
 
-	const track = useCallback(() => {
-		va.track("callout-clicked", { location })
-	}, [location]);
+	const track = useAnalytics("callout");
+
+	const onClick = useCallback(() => {
+		track(window.location.pathname.replace('/', ''))
+	}, [track]);
 
 	return <section className={styles.container}>
 		<div className={styles.inner}>
@@ -29,7 +31,7 @@ export function Callout({
 				<p className={styles.title}>{title}</p>
 				<p className={styles.subtitle}>{subtitle}</p>
 			</div>
-			<Button onClick={track} href={href} value={cta} />
+			<Button onClick={onClick} href={href} value={cta} />
 		</div>
 	</section>
 }

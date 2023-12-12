@@ -11,7 +11,7 @@ import { FormEvent, useCallback, useEffect, useState } from "react";
 import { fetchPropertiesForQuery } from "./actions";
 import { Skeleton } from "#/components/skeleton";
 import { useSearchParams } from "next/navigation";
-import { track } from "@vercel/analytics";
+import { useAnalytics } from "#/helpers/use-analytics";
 
 export function Properties(props: { properties: PropertyType[] }): JSX.Element {
 
@@ -22,7 +22,6 @@ export function Properties(props: { properties: PropertyType[] }): JSX.Element {
 		event.preventDefault();
 		setProperties([]);
 		const formData = new FormData(event.currentTarget);
-		track("search", Object.fromEntries(formData.entries()) as Record<string, string>);
 		fetchPropertiesForQuery(formData).then(setProperties);
 	}, []);
 
@@ -36,17 +35,19 @@ export function Properties(props: { properties: PropertyType[] }): JSX.Element {
 		if (searchParams.get("price")) setPrice(Number(searchParams.get("price")));
 	}, [searchParams]);
 
+	const track = useAnalytics("query-picker-full")
+
 	return <>
 		<form onSubmit={handleSubmit} className={styles.queryBar}>
-			<Select value={city} onSelect={setCity} name='city' label="Location" options={CITIES} />
-			<Select value={type} onSelect={setType} name='type' label="Type" options={PROPERTY_TYPES} />
-			<Select value={price} onSelect={setPrice} name='price' label="Price" options={PRICE_BRACKETS} />
-			<Select name='beds' label="Beds" options={BEDS} />
-			<Select name='baths' label="Baths" options={BATHS} />
-			<Select name='sqft' label="Sqft" options={SQFT} />
-			<Select name='year' label="Year Built" options={YEAR_BUILT} />
+			<Select trackFunc={track} value={city} onSelect={setCity} name='city' label="Location" options={CITIES} />
+			<Select trackFunc={track} value={type} onSelect={setType} name='type' label="Type" options={PROPERTY_TYPES} />
+			<Select trackFunc={track} value={price} onSelect={setPrice} name='price' label="Price" options={PRICE_BRACKETS} />
+			<Select trackFunc={track} name='beds' label="Beds" options={BEDS} />
+			<Select trackFunc={track} name='baths' label="Baths" options={BATHS} />
+			<Select trackFunc={track} name='sqft' label="Sqft" options={SQFT} />
+			<Select trackFunc={track} name='year' label="Year Built" options={YEAR_BUILT} />
 			<div className={styles.spacer} />
-			<Button type="submit" value="Update" icon={<FaSearch />} />
+			<Button analyticsKey="query-full" type="submit" value="Update" icon={<FaSearch />} />
 		</form>
 		<div className={styles.properties}>
 			{properties.length === 0 ? <>

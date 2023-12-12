@@ -10,6 +10,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import { Button } from "../button";
 import classNames from "classnames";
 import Link from "next/link";
+import { useAnalytics } from "#/helpers/use-analytics";
 
 function PropertySpec({ icon: Icon, value }: { icon: IconType, value: string }): JSX.Element {
 	return <li className={styles.spec}>
@@ -44,17 +45,24 @@ function FullScreenImage({
 		});
 	}, [images, setIndex]);
 
+	const track = useAnalytics("full-screen-image");
+
 	const previousImage = useCallback((ev?: MouseEvent<HTMLButtonElement>) => {
 		ev?.stopPropagation();
 		deltaImageIndex(-1);
-	}, [deltaImageIndex]);
+		track("previous");
+	}, [deltaImageIndex, track]);
 
 	const nextImage = useCallback((ev?: MouseEvent<HTMLButtonElement>) => {
 		ev?.stopPropagation();
 		deltaImageIndex(1);
-	}, [deltaImageIndex]);
+		track("next");
+	}, [deltaImageIndex, track]);
 
-	const close = useCallback(() => setIndex(null), [setIndex]);
+	const close = useCallback(() => {
+		setIndex(null);
+		track("close");
+	}, [setIndex, track]);
 
 	useEffect(() => {
 		const listener = (ev: KeyboardEvent) => {
@@ -161,7 +169,7 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 				<PropertySpec icon={FaDollarSign} value={pricePerSQFT} />
 				{appliances === "" ? null : <PropertySpec icon={FaRobot} value={appliances} />}
 			</ul>
-			{property.virtualTour ? <Button newTab href={property.virtualTour} value="View Virtual Tour" /> : null}
+			{property.virtualTour ? <Button analyticsKey="virtual-tour" newTab href={property.virtualTour} value="View Virtual Tour" /> : null}
 		</div>
 	</div>
 

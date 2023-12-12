@@ -45,7 +45,7 @@ export default async function Page({ searchParams }: {
 				<label htmlFor="message">Anything you want to say:</label>
 				<textarea defaultValue={searchParams.message} id='message' name="message" rows={8} cols={30} placeholder="Tell us more..." />
 			</form>
-			<Button type="submit" form="contactForm" value="Submit" />
+			<Button analyticsKey="contact-submit" type="submit" form="contactForm" value="Submit" />
 		</div>
 		<div className={styles.right}>
 			<Image src={contactImage} alt='contact' width={300} />

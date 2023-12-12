@@ -3,7 +3,6 @@ import { Button } from "#/components/button";
 import { Property } from "#/components/property";
 import { FaArrowRight } from "react-icons/fa";
 import styles from "./index.module.css";
-import homeImage from "#/public/home.png";
 import { Property as PropertyType } from "#/data/types";
 
 export function Properties({ properties }: { properties: PropertyType[] }): JSX.Element {
@@ -16,6 +15,6 @@ export function Properties({ properties }: { properties: PropertyType[] }): JSX.
 				property={p}
 			/>)}
 		</div>
-		<Button href='/search' value='View More Properties' postIcon={FaArrowRight} />
+		<Button analyticsKey="view-more-properties" href='/search' value='View More Properties' postIcon={FaArrowRight} />
 	</section>
 }

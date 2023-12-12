@@ -4,6 +4,7 @@ import styles from "./index.module.css";
 import { cn } from "#/helpers/cn";
 import { useCallback, useMemo } from "react";
 import Link from "next/link";
+import { useAnalytics } from "#/helpers/use-analytics";
 
 export function RawButton(props: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) {
 	return <button {...props} />
@@ -18,7 +19,8 @@ export function Button({
 	postIcon: PostIcon,
 	type = 'button',
 	form,
-	newTab = false
+	newTab = false,
+	analyticsKey
 }: {
 	value: string,
 	icon?: IconType | JSX.Element,
@@ -29,13 +31,17 @@ export function Button({
 	type?: 'submit' | 'button'
 	form?: string;
 	newTab?: boolean;
+	analyticsKey?: string;
 }): JSX.Element {
 
 	const Element = useMemo(() => href ? Link : RawButton, [href]);
 
+	const track = useAnalytics("button");
+
 	const handleClick = useCallback(() => {
+		if (analyticsKey) track(analyticsKey)
 		if (onClick && !disabled) onClick();
-	}, [onClick, disabled]);
+	}, [track, analyticsKey, onClick, disabled]);
 
 	return <Element
 		form={form}
