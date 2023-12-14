@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "1.0.0-beta.6",
+    "@prisma/client": "5.7.0",
+    "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
@@ -19,6 +21,7 @@
     "classnames": "^2.3.2",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.6",
+    "jsonwebtoken": "^9.0.2",
     "next": "13.4.6",
     "otplib": "^12.0.1",
     "prisma": "^5.7.0",

@@ -2,8 +2,8 @@ import { kv } from "@vercel/kv";
 import { NextRequest, NextResponse } from "next/server";
 import { authenticator } from "otplib";
 import { z } from "zod";
-import { randomBytes } from "crypto";
 import { resend } from "#/lib/email";
+import { sign } from "jsonwebtoken";
 
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
   const rawJSON = await req.json();
@@ -26,5 +26,8 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
     subject: "New Sign In",
     text: "You have signed in to your Trillium Partners account.",
   });
-  return NextResponse.json({ ok: true });
+  const token = sign({ email }, process.env.JWT_SECRET!);
+  const res = NextResponse.json({ token });
+  res.cookies.set("token", token);
+  return res;
 };
