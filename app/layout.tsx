@@ -4,6 +4,8 @@ import '#/styles/globals.css'
 import { Space_Grotesk, Poppins } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
+import { Heartbeat } from '#/lib/use-heartbeat';
+import { Clicker } from '#/lib/use-clicker';
 
 
 const grotesk = Space_Grotesk({ subsets: ['latin'], weight: ['400', '600'], variable: "--font" })
@@ -29,6 +31,8 @@ export default function RootLayout({
           <Footer />
         </main>
         <Analytics />
+        <Heartbeat />
+        <Clicker />
       </body>
     </html>
   )

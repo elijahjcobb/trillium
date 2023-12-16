@@ -4,6 +4,7 @@ import { authenticator } from "otplib";
 import { z } from "zod";
 import { randomBytes } from "crypto";
 import { resend } from "#/lib/email";
+import { trackServer } from "#/lib/track-server";
 
 export const POST = async (req: NextRequest): Promise<NextResponse> => {
   const rawJSON = await req.json();
@@ -20,5 +21,6 @@ export const POST = async (req: NextRequest): Promise<NextResponse> => {
     subject: "OTP Code",
     text: code,
   });
+  await trackServer({ key: "user.auth" });
   return NextResponse.json({ ok: true });
 };
