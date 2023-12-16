@@ -2,10 +2,11 @@
 import { useEffect } from "react";
 import { throttle } from "lodash";
 import { hash } from "./hash";
-import type { ClickerEvent, ClickerEventMeta } from "./events";
-import { trackClient } from "./track-client";
+import type { ClickerEvent } from "./events";
+import { useTrack } from "./track-client";
 
-const THROTTLE_MS = 100;
+const CLICK_THROTTLE_MS = 100;
+const HOVER_THROTTLE_MS = 1000;
 
 function parseEvent(ev: MouseEvent): ClickerEvent | null {
   if (ev.target === null) return null;
@@ -44,29 +45,42 @@ function parseEvent(ev: MouseEvent): ClickerEvent | null {
   };
 }
 
-function handleClick(event: ClickerEventMeta): void {
-  trackClient({ key: "mouse", meta: event });
-}
-
 export function useClicker(): void {
+  const track = useTrack();
+
   useEffect(() => {
     let lastHash = "";
-    const handler = throttle((ev: MouseEvent) => {
+    const clickHandler = throttle((ev: MouseEvent) => {
       const event = parseEvent(ev);
       if (event === null) return;
       hash(JSON.stringify(event)).then((hash) => {
         if (hash === lastHash) return;
         lastHash = hash;
-        handleClick({ ...event, hash, x: ev.clientX, y: ev.clientY });
+        track({
+          key: "mouse",
+          meta: { ...event, hash, x: ev.clientX, y: ev.clientY },
+        });
       });
-    }, THROTTLE_MS);
-    document.addEventListener("click", handler);
-    document.addEventListener("mousemove", handler);
+    }, CLICK_THROTTLE_MS);
+    const hoverHandler = throttle((ev: MouseEvent) => {
+      const event = parseEvent(ev);
+      if (event === null) return;
+      hash(JSON.stringify(event)).then((hash) => {
+        if (hash === lastHash) return;
+        lastHash = hash;
+        track({
+          key: "mouse",
+          meta: { ...event, hash, x: ev.clientX, y: ev.clientY },
+        });
+      });
+    }, HOVER_THROTTLE_MS);
+    document.addEventListener("click", clickHandler);
+    document.addEventListener("mousemove", hoverHandler);
     return () => {
-      document.removeEventListener("click", handler);
-      document.removeEventListener("mousemove", handler);
+      document.removeEventListener("click", clickHandler);
+      document.removeEventListener("mousemove", hoverHandler);
     };
-  }, []);
+  }, [track]);
 }
 
 export function Clicker(): null {

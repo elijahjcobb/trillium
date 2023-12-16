@@ -1,3 +1,4 @@
+"use server";
 import { Property, Query, Response } from "#/data/types";
 import { propertyFromRawProperty } from "./convert";
 import { REVALIDATE_DEFAULT, fetcher } from "./fetcher";

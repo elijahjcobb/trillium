@@ -16,7 +16,7 @@ export async function contact(form: FormData): Promise<void> {
   };
 
   try {
-    const data = await resend.emails.send({
+    await resend.emails.send({
       from: "Trillium Partners Notifications <no-reply@trillium.elijahcobb.app>",
       to: EMAIL_ADDRESSES,
       subject: "New Contact Form Submission",
@@ -28,7 +28,6 @@ export async function contact(form: FormData): Promise<void> {
         message,
       }),
     });
-    console.log(data);
   } catch (error) {
     console.error("Error sending email");
     console.error(error);

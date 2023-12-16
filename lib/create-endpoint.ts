@@ -48,7 +48,6 @@ export function createEndpoint(
         throw e;
       }
     } catch (e) {
-      console.error(e);
       if (e instanceof APIError) {
         return NextResponse.json(
           {
@@ -60,6 +59,7 @@ export function createEndpoint(
           { status: e.statusCode }
         );
       }
+      console.error(e);
       return NextResponse.json(
         {
           message: "Internal server error.",

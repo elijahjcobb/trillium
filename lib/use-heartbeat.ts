@@ -2,16 +2,17 @@
 
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { trackClient } from "./track-client";
+import { useTrack } from "./track-client";
 
 export function useHeartBeat(): void {
   const path = usePathname();
+  const track = useTrack();
   useEffect(() => {
     const interval = setInterval(() => {
-      trackClient({ key: "heartbeat", meta: { path } });
+      track({ key: "heartbeat", meta: { path } });
     }, 1000);
     return () => clearInterval(interval);
-  }, [path]);
+  }, [path, track]);
 }
 
 export function Heartbeat(): null {
