@@ -10,6 +10,8 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai"
 import { Button } from "../button";
 import classNames from "classnames";
 import Link from "next/link";
+import { LikeButton } from "./like-button";
+
 
 function PropertySpec({ icon: Icon, value }: { icon: IconType, value: string }): JSX.Element {
 	return <li className={styles.spec}>
@@ -147,7 +149,10 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 			})}
 		</div>
 		<div className={styles.right}>
-			<p className={styles.price}>{price}</p>
+			<div className={styles.priceHeader}>
+				<p className={styles.price}>{price}</p>
+				<LikeButton mls={property.mls} />
+			</div>
 			<Link href={`https://www.google.com/maps/place/${property.address},+${property.zip}`} target="_blank" className={styles.address}>{property.address}</Link>
 			<ul className={styles.specs}>
 				{property.bedrooms === 0 ? null : <PropertySpec icon={FaBed} value={bedrooms} />}

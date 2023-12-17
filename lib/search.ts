@@ -37,6 +37,18 @@ export async function propertyById(id: string): Promise<Property | undefined> {
   return propertyFromRawProperty(raw);
 }
 
+export async function getPropertyForId(id: string): Promise<Property> {
+  const url = generateLookUpString(id);
+  const res = await fetcher<Response>({
+    url,
+    tags: [id],
+    revalidate: REVALIDATE_DEFAULT,
+  });
+  const raw = res[0];
+  if (!raw) throw new Error("Could not find property.");
+  return propertyFromRawProperty(raw);
+}
+
 export async function topProperties(limit: number = 6): Promise<Property[]> {
   try {
     const properties = await search({

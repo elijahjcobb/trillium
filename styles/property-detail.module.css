@@ -9,6 +9,14 @@
   gap: var(--sp);
 }
 
+.priceHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--sp2);
+  width: 100%;
+  justify-content: space-between;
+}
+
 .imageWrapper {
   background: none;
   outline: none;

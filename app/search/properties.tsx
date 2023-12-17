@@ -13,7 +13,7 @@ import { Skeleton } from "#/components/skeleton";
 import { useSearchParams } from "next/navigation";
 import { track } from "@vercel/analytics";
 
-export function Properties(props: { properties: PropertyType[] }): JSX.Element {
+export function Properties(props: { properties: PropertyType[]; hideQueryBar?: boolean; title?: string; }): JSX.Element {
 
 	const [properties, setProperties] = useState<PropertyType[]>(props.properties);
 	const searchParams = useSearchParams();
@@ -37,7 +37,8 @@ export function Properties(props: { properties: PropertyType[] }): JSX.Element {
 	}, [searchParams]);
 
 	return <>
-		<form onSubmit={handleSubmit} className={styles.queryBar}>
+		{props.title ? <h1>{props.title}</h1> : null}
+		{props.hideQueryBar === true ? null : <form onSubmit={handleSubmit} className={styles.queryBar}>
 			<Select value={city} onSelect={setCity} name='city' label="Location" options={CITIES} />
 			<Select value={type} onSelect={setType} name='type' label="Type" options={PROPERTY_TYPES} />
 			<Select value={price} onSelect={setPrice} name='price' label="Price" options={PRICE_BRACKETS} />
@@ -47,7 +48,7 @@ export function Properties(props: { properties: PropertyType[] }): JSX.Element {
 			<Select name='year' label="Year Built" options={YEAR_BUILT} />
 			<div className={styles.spacer} />
 			<Button type="submit" value="Update" icon={<FaSearch />} />
-		</form>
+		</form>}
 		<div className={styles.properties}>
 			{properties.length === 0 ? <>
 				<PropertySkeleton />

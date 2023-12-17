@@ -40,21 +40,3 @@ export const POST = createEndpoint(async (req) => {
 
   return NextResponse.json({ ok: true });
 });
-
-export const DELETE = createEndpoint(async (req) => {
-  const { mls } = z.object({ mls: z.string() }).parse(await req.json());
-  const user = await verifyUser(req);
-
-  await prisma.favorite.delete({
-    where: {
-      userId_mls: {
-        userId: user.id,
-        mls,
-      },
-    },
-  });
-
-  await trackServer({ key: "favorites.remove", user, meta: { mls } });
-
-  return NextResponse.json({ ok: true });
-});

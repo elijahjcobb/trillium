@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: var(--sp);
+  border-radius: var(--sp1);
+  overflow: hidden;
+  border: solid 1px var(--acc2);
+  background-color: var(--acc1);
+  gap: var(--sp-2);
+  height: 62px;
+}
+
+.container,
+.label {
+  cursor: text;
+  transition: ease-in-out 125ms;
+}
+
+.focus {
+  border-color: var(--pri);
+}
+
+.focus .label {
+  color: var(--pri);
+}
+
+.label {
+  color: var(--acc3);
+  font-weight: bold;
+  transform: translateY(12px);
+}
+
+.label,
+.input {
+  font-size: 1rem;
+}
+
+.labelFocus {
+  transform: translateY(0);
+  font-size: 0.85rem;
+}
+
+.input {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.error {
+  border-color: var(--err);
+}
+
+.error .label {
+  color: var(--err);
+}

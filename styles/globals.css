@@ -19,6 +19,7 @@
   --sec-rgb: 0, 129, 175;
   --tri-rgb: 0, 171, 231;
   --pri-hex: #ff00c0;
+  --err: #ff2a46;
   --pri: rgb(var(--pri-rgb));
   --sec: rgb(var(--sec-rgb));
   --tri: rgb(var(--tri-rgb));

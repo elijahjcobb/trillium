@@ -6,6 +6,7 @@ import type { IconType } from "react-icons";
 import { FaMapMarkedAlt, FaPhone, FaEnvelope } from "react-icons/fa";
 import { Button } from "#/components/button";
 import { contact } from "./actions";
+import { Input } from "#/components/input";
 
 function ContactRow({ icon: Icon, value, href }: { icon: IconType, value: string, href: string }) {
 	return <Link target={'_blank'} className={styles.row} href={href}>
@@ -28,12 +29,9 @@ export default async function Page({ searchParams }: {
 			<p>Aliquam cum praesentium ratione odit enim aut perspiciatis vel qui fugiat rerum itaque.</p>
 			{/* @ts-expect-error - ignore action */}
 			<form id='contactForm' className={styles.form} action={contact}>
-				<label htmlFor='name'>Name: *</label>
-				<input id='name' required name='name' autoComplete="name" type='text' placeholder="Enter your name" />
-				<label htmlFor='email'>Email: *</label>
-				<input id='email' required name='email' type='email' autoComplete="email" placeholder="Enter your email" />
-				<label htmlFor='phone'>Phone: *</label>
-				<input id='phone' required name='phone' type='tel' autoComplete="tel" placeholder="Enter your phone" />
+				<Input label="Name" id='name' required name='name' autoComplete="name" type='text' />
+				<Input label="Email" id='email' required name='email' type='email' autoComplete="email" />
+				<Input label="Phone" id='phone' required name='phone' type='tel' autoComplete="tel" />
 				<label htmlFor="goal">I want to:</label>
 				<select defaultValue={searchParams.goal} id="goal" name="goal">
 					<option value="chat">Chat</option>

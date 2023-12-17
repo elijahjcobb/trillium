@@ -3,6 +3,7 @@ export const EVENTS = [
   "user.signup",
   "user.login",
   "favorites.list",
+  "favorites.read",
   "favorites.add",
   "favorites.remove",
   "heartbeat",
@@ -46,6 +47,7 @@ export interface EventsMeta extends EventMetaType {
   "favorites.list": undefined;
   "favorites.add": { mls: string };
   "favorites.remove": { mls: string };
+  "favorites.read": { mls: string };
   heartbeat: { path: string };
   mouse: ClickerEventMeta;
 }

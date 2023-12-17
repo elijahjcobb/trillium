@@ -18,9 +18,10 @@ export function Button({
 	postIcon: PostIcon,
 	type = 'button',
 	form,
-	newTab = false
+	newTab = false,
+	className
 }: {
-	value: string,
+	value?: string,
 	icon?: IconType | JSX.Element,
 	disabled?: boolean;
 	onClick?: () => void;
@@ -28,6 +29,7 @@ export function Button({
 	postIcon?: IconType;
 	type?: 'submit' | 'button'
 	form?: string;
+	className?: string;
 	newTab?: boolean;
 }): JSX.Element {
 
@@ -45,11 +47,12 @@ export function Button({
 		onClick={handleClick}
 		className={cn(
 			styles.button,
-			disabled && styles.disabled
+			disabled && styles.disabled,
+			className
 		)}
 	>
 		{Icon ? typeof Icon === 'function' ? <Icon /> : Icon : null}
-		<span>{value}</span>
+		{value ? <span>{value}</span> : null}
 		{PostIcon ? <PostIcon /> : null}
 	</Element>
 }

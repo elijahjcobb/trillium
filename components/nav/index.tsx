@@ -36,6 +36,7 @@ export function Nav(): JSX.Element {
 				<ul className={styles.list}>
 					{LINKS.map(link => <NavItem key={link.name} link={link} />)}
 				</ul>
+				<Button href="/favorites" value="Favorites" />
 				<Button value='Contact' href="/contact" />
 			</nav>
 			<RawButton onClick={toggleNav} className={styles.hamburger}>

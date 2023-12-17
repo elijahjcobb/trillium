@@ -2,13 +2,18 @@ import { NextRequest } from "next/server";
 import { prisma } from "#/lib/prisma";
 import { verify } from "jsonwebtoken";
 import { APIError } from "./api-error";
+import { cookies } from "next/headers";
 
-export async function verifyUser(req: NextRequest) {
+export async function verifyUser(req?: NextRequest) {
   let token: string | undefined;
-  if (req.headers.has("authorization")) {
-    token = req.headers.get("authorization")!.split(" ")[1];
+  if (req) {
+    if (req.headers.has("authorization")) {
+      token = req.headers.get("authorization")!.split(" ")[1];
+    } else {
+      token = req.cookies.get("token")?.value;
+    }
   } else {
-    token = req.cookies.get("token")?.value;
+    token = cookies().get("token")?.value;
   }
   if (!token) {
     throw new APIError({
