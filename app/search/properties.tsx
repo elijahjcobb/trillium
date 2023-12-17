@@ -37,7 +37,7 @@ export function Properties(props: { properties: PropertyType[]; hideQueryBar?: b
 	}, [searchParams]);
 
 	return <>
-		{props.title ? <h1>{props.title}</h1> : null}
+		{props.title ? <h1 className={styles.title}>{props.title}</h1> : null}
 		{props.hideQueryBar === true ? null : <form onSubmit={handleSubmit} className={styles.queryBar}>
 			<Select value={city} onSelect={setCity} name='city' label="Location" options={CITIES} />
 			<Select value={type} onSelect={setType} name='type' label="Type" options={PROPERTY_TYPES} />

@@ -10,6 +10,12 @@
   padding: var(--sp6) var(--sp2);
 }
 
+.title {
+  text-align: center;
+  font-size: 3rem;
+  margin: var(--sp2);
+}
+
 .queryBar {
   display: none;
   align-items: center;

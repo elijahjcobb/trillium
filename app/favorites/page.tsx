@@ -11,5 +11,5 @@ export default async function Page(): Promise<JSX.Element> {
 	const favorites = await prisma.favorite.findMany({ where: { userId: user.id } });
 	const nullableProperties = await Promise.all(favorites.map(favorite => propertyById(favorite.mls)))
 	const properties = nullableProperties.filter((p): p is Property => p !== null);
-	return <Properties hideQueryBar properties={properties} />
+	return <Properties title="Favorites" hideQueryBar properties={properties} />
 }
