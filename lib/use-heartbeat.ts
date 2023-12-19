@@ -1,16 +1,20 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
-import { useTrack } from "./track-client";
+import { useCallback, useEffect } from "react";
 
 export function useHeartBeat(): void {
   const path = usePathname();
-  const track = useTrack();
+
+  const track = useCallback(() => {
+    fetch("/api/heartbeat", {
+      method: "POST",
+      body: JSON.stringify({ href: path }),
+    }).catch(console.error);
+  }, [path]);
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      track({ key: "heartbeat", meta: { path } });
-    }, 1000);
+    const interval = setInterval(track, 1000);
     return () => clearInterval(interval);
   }, [path, track]);
 }

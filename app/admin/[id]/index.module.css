@@ -1,0 +1,20 @@
+.eventRow {
+  display: flex;
+  align-items: center;
+  gap: var(--sp2);
+}
+
+.icons {
+  position: relative;
+}
+
+.primaryIcon {
+  color: var(--pri);
+}
+
+.secondaryIcon {
+  color: var(--acc3);
+  position: absolute;
+  right: -4px;
+  top: -2px;
+}

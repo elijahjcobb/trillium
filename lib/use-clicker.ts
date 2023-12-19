@@ -45,7 +45,13 @@ function parseEvent(ev: MouseEvent): ClickerEvent | null {
   };
 }
 
-export function useClicker(): void {
+export function useClicker({
+  enableClick,
+  enableMove,
+}: {
+  enableClick: boolean;
+  enableMove: boolean;
+}): void {
   const track = useTrack();
 
   useEffect(() => {
@@ -74,16 +80,16 @@ export function useClicker(): void {
         });
       });
     }, HOVER_THROTTLE_MS);
-    document.addEventListener("click", clickHandler);
-    document.addEventListener("mousemove", hoverHandler);
+    if (enableClick) document.addEventListener("click", clickHandler);
+    if (enableMove) document.addEventListener("mousemove", hoverHandler);
     return () => {
       document.removeEventListener("click", clickHandler);
       document.removeEventListener("mousemove", hoverHandler);
     };
-  }, [track]);
+  }, [enableClick, enableMove, track]);
 }
 
 export function Clicker(): null {
-  useClicker();
+  useClicker({ enableClick: false, enableMove: false });
   return null;
 }
