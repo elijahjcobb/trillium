@@ -78,10 +78,12 @@ export default async function Page(page: { params: { id: string } }): Promise<JS
 		<h1>User</h1>
 		<p>{user?.email}</p>
 		<h2>Page Views</h2>
-		{JSON.stringify(pages)}
+		<ul>
+			{pages.map((p) => <li key={p.href}><Link target="_blank" href={p.href}>{p.href}</Link> - {p.count} views</li>)}
+		</ul>
 		<h2>Favorites Properties</h2>
 		<ul>
-			{favorites.map((favorite) => <li key={favorite.mls}><Link target="_blank" href={`/search/${favorite.mls}`}>{favorite.mls}</Link></li>)}
+			{favorites.map((favorite) => <li key={favorite.mls}><Link target="_blank" href={`/search/${favorite.mls}`}>{favorite.mls}</Link> - {favorite.createdAt.toLocaleDateString()}</li>)}
 		</ul>
 		<h2>Property Views</h2>
 		<ul>
