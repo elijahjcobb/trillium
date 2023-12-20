@@ -1,11 +1,60 @@
-.eventRow {
+.page {
+  width: 100%;
+  max-width: 1080px;
+  margin: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--sp4);
+}
+
+.page section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp2);
+}
+
+.page section > p {
+  font-size: 1rem;
+  font-weight: lighter;
+  color: var(--acc3);
+}
+
+.email {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.eventHeader {
   display: flex;
   align-items: center;
-  gap: var(--sp2);
+  justify-content: space-between;
+  gap: var(--sp);
+  width: 100%;
+}
+
+.page table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.page table td,
+.page table th {
+  border: 1px solid var(--acc2);
+  text-align: left;
+  padding: var(--sp);
+}
+
+.page table tr:nth-child(even) {
+  background-color: var(--acc1);
 }
 
 .icons {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--sp);
 }
 
 .primaryIcon {
@@ -15,6 +64,6 @@
 .secondaryIcon {
   color: var(--acc3);
   position: absolute;
-  right: -4px;
+  left: -4px;
   top: -2px;
 }

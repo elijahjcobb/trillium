@@ -13,7 +13,7 @@ export const POST = createEndpoint(async (req) => {
       meta: z.optional(z.object({})),
     })
     .parse(await req.json());
-  const user = await noThrow(verifyUser(req));
+  const { user } = await noThrow(verifyUser(req));
   await prisma.event.create({
     data: {
       userId: "id" in user ? user.id : undefined,

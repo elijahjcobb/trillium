@@ -15,7 +15,7 @@ export const POST = createEndpoint(async (req) => {
       })
     )
     .parse(await req.json());
-  const user = await noThrow(verifyUser(req));
+  const { user } = await noThrow(verifyUser(req));
   await prisma.event.createMany({
     data: events.map(({ key, meta }) => ({
       userId: "id" in user ? user.id : undefined,

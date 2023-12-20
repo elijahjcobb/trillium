@@ -7,7 +7,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 export const GET = createEndpoint(async (req) => {
-  const user = await verifyUser(req);
+  const { user } = await verifyUser(req);
   const favorites = await prisma.favorite.findMany({
     where: {
       userId: user.id,
@@ -21,7 +21,7 @@ export const GET = createEndpoint(async (req) => {
 
 export const POST = createEndpoint(async (req) => {
   const { mls } = z.object({ mls: z.string() }).parse(await req.json());
-  const user = await verifyUser(req);
+  const { user } = await verifyUser(req);
   try {
     await prisma.favorite.create({
       data: {

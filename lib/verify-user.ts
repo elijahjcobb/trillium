@@ -3,8 +3,11 @@ import { prisma } from "#/lib/prisma";
 import { verify } from "jsonwebtoken";
 import { APIError } from "./api-error";
 import { cookies } from "next/headers";
+import { User } from "@prisma/client";
 
-export async function verifyUser(req?: NextRequest) {
+export async function verifyUser(
+  req?: NextRequest
+): Promise<{ user: User; isAdmin: boolean }> {
   let token: string | undefined;
   if (req) {
     if (req.headers.has("authorization")) {
@@ -45,5 +48,5 @@ export async function verifyUser(req?: NextRequest) {
       code: "auth_invalid",
     });
   }
-  return user;
+  return { user, isAdmin: false };
 }

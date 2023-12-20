@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 
 export const GET = createEndpoint(async (req, _id) => {
   const mls = _id();
-  const user = await verifyUser(req);
+  const { user } = await verifyUser(req);
   const favorites = await prisma.favorite.count({
     where: {
       userId: user.id,
@@ -21,7 +21,7 @@ export const GET = createEndpoint(async (req, _id) => {
 
 export const DELETE = createEndpoint(async (req, _id) => {
   const mls = _id();
-  const user = await verifyUser(req);
+  const { user } = await verifyUser(req);
 
   await prisma.favorite.delete({
     where: {

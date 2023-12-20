@@ -11,7 +11,7 @@ export const POST = createEndpoint(async (req) => {
       href: z.string(),
     })
     .parse(await req.json());
-  const user = await noThrow(verifyUser(req));
+  const { user } = await noThrow(verifyUser(req));
   await prisma.heartbeat.create({
     data: {
       userId: "id" in user ? user.id : undefined,
