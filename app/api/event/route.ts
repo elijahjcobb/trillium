@@ -1,8 +1,7 @@
-import { createEndpoint } from "#/lib/create-endpoint";
 import { EVENTS } from "#/lib/events";
-import { noThrow } from "#/lib/no-throw";
 import { prisma } from "#/lib/prisma";
 import { verifyUser } from "#/lib/verify-user";
+import { createEndpoint, noThrow } from "@elijahjcobb/next-api";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -13,10 +12,10 @@ export const POST = createEndpoint(async (req) => {
       meta: z.optional(z.object({})),
     })
     .parse(await req.json());
-  const { user } = await noThrow(verifyUser(req));
+  const userOrError = await noThrow(verifyUser(req));
   await prisma.event.create({
     data: {
-      userId: "id" in user ? user.id : undefined,
+      userId: userOrError instanceof Error ? undefined : userOrError.user.id,
       key,
       meta,
     },

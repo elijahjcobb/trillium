@@ -8,7 +8,7 @@ export const EVENTS = [
   "favorites.remove",
   "heartbeat",
   "mouse",
-] as const satisfies string[];
+] as const satisfies readonly string[];
 
 export type EventKey = (typeof EVENTS)[number];
 
@@ -16,7 +16,7 @@ export const ANONYMOUS_EVENTS = [
   "user.auth",
   "heartbeat",
   "mouse",
-] as const satisfies EventKey[];
+] as const satisfies readonly EventKey[];
 
 export type AnonymousEvent = (typeof ANONYMOUS_EVENTS)[number];
 

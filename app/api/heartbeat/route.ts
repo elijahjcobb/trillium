@@ -1,7 +1,6 @@
-import { createEndpoint } from "#/lib/create-endpoint";
-import { noThrow } from "#/lib/no-throw";
 import { prisma } from "#/lib/prisma";
 import { verifyUser } from "#/lib/verify-user";
+import { createEndpoint, noThrow } from "@elijahjcobb/next-api";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -11,10 +10,10 @@ export const POST = createEndpoint(async (req) => {
       href: z.string(),
     })
     .parse(await req.json());
-  const { user } = await noThrow(verifyUser(req));
+  const userOrError = await noThrow(verifyUser(req));
   await prisma.heartbeat.create({
     data: {
-      userId: "id" in user ? user.id : undefined,
+      userId: userOrError instanceof Error ? undefined : userOrError.user.id,
       href,
     },
   });

@@ -8,6 +8,7 @@ import { Heartbeat } from '#/lib/use-heartbeat';
 import { Clicker } from '#/lib/use-clicker';
 import { Track } from '#/lib/track-client';
 
+export const runtime = 'nodejs';
 
 const grotesk = Space_Grotesk({ subsets: ['latin'], weight: ['400', '600'], variable: "--font" })
 const poppins = Poppins({ subsets: ['latin'], weight: ['200', '400', '600', '800'], variable: "--font-title" })

@@ -1,7 +1,7 @@
-import { createEndpoint } from "#/lib/create-endpoint";
 import { prisma } from "#/lib/prisma";
 import { trackServer } from "#/lib/track-server";
 import { verifyUser } from "#/lib/verify-user";
+import { createEndpoint } from "@elijahjcobb/next-api";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 import { NextResponse } from "next/server";
 import { z } from "zod";

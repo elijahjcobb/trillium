@@ -1,6 +1,4 @@
-import { Footer } from "#/components/footer"
 import { Callout } from "#/components/home/callout"
-import { Nav } from "#/components/nav"
 import styles from "#/styles/generic.module.css";
 import Image from "next/image";
 import standingImage from "#/public/standing.png";

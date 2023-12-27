@@ -1,9 +1,9 @@
 "use client";
 import { useEffect } from "react";
 import { throttle } from "lodash";
-import { hash } from "./hash";
 import type { ClickerEvent } from "./events";
 import { useTrack } from "./track-client";
+import { hash } from "@elijahjcobb/next-api/build/hash";
 
 const CLICK_THROTTLE_MS = 100;
 const HOVER_THROTTLE_MS = 1000;

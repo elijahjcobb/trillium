@@ -1,33 +1,16 @@
 import { NextRequest } from "next/server";
 import { prisma } from "#/lib/prisma";
-import { verify } from "jsonwebtoken";
-import { APIError } from "./api-error";
-import { cookies } from "next/headers";
 import { User } from "@prisma/client";
+import { APIError, tokenVerify } from "@elijahjcobb/next-api";
 
 export async function verifyUser(
   req?: NextRequest
 ): Promise<{ user: User; isAdmin: boolean }> {
-  let token: string | undefined;
-  if (req) {
-    if (req.headers.has("authorization")) {
-      token = req.headers.get("authorization")!.split(" ")[1];
-    } else {
-      token = req.cookies.get("token")?.value;
-    }
-  } else {
-    token = cookies().get("token")?.value;
-  }
-  if (!token) {
-    throw new APIError({
-      statusCode: 401,
-      message: "No token.",
-      code: "auth_missing",
-    });
-  }
   let email: string;
   try {
-    const payload = verify(token, process.env.JWT_SECRET!) as { email: string };
+    const payload = tokenVerify(req) as {
+      email: string;
+    };
     email = payload.email;
   } catch (e) {
     throw new APIError({

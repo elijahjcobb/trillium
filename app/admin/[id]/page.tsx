@@ -32,6 +32,8 @@ async function getPageCounts(userId: string): Promise<{ properties: PageCount, p
 export default async function Page(page: { params: { id: string } }): Promise<JSX.Element> {
 	const { isAdmin } = await verifyUser();
 	if (!isAdmin) throw new Error("No.");
+
+
 	const userId = page.params.id;
 	const targetUser = await prisma.user.findUniqueOrThrow({ where: { id: userId } });
 	const { pages, properties } = await getPageCounts(userId);
