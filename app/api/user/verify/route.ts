@@ -38,8 +38,10 @@ export const POST = createEndpoint(async (req) => {
 
   trackServer({ user, key: "user.login" });
 
-  const token = tokenSign({ email });
+  const token = tokenSign({ email }, "365d");
   const res = NextResponse.json({ token });
-  res.cookies.set("token", token);
+  res.cookies.set("token", token, {
+    expires: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
+  });
   return res;
 });
