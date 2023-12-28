@@ -1,0 +1,17 @@
+.container {
+  position: absolute;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  display: flex;
+  z-index: 8;
+  top: 32px;
+  right: 32px;
+  border-radius: 16px;
+  transform: translateX(125%);
+  transition: transform 250ms ease-in-out;
+}
+
+.show {
+  transform: translateX(0%);
+}
