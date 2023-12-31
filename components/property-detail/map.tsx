@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { Marker } from "#/app/map/marker";
 import type { Property } from "#/data/types";
 import styles from "./map.module.css";
+import { Button } from "../button";
 
 export function PropertyMap({ property }: { property: Property }): JSX.Element {
 	return <div className={styles.container}>
@@ -18,5 +19,6 @@ export function PropertyMap({ property }: { property: Property }): JSX.Element {
 		>
 			<Marker key={property.mls} property={property} />
 		</Mapbox>
+		<Button href="/map" className={styles.button} value="Open Map" />
 	</div>
 }
