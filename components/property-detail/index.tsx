@@ -11,6 +11,7 @@ import { Button } from "../button";
 import classNames from "classnames";
 import Link from "next/link";
 import { LikeButton } from "./like-button";
+import { PropertyMap } from "./map";
 
 
 function PropertySpec({ icon: Icon, value }: { icon: IconType, value: string }): JSX.Element {
@@ -167,7 +168,9 @@ export function PropertyDetail({ property }: { property: Property }): JSX.Elemen
 				{appliances === "" ? null : <PropertySpec icon={FaRobot} value={appliances} />}
 			</ul>
 			{property.virtualTour ? <Button newTab href={property.virtualTour} value="View Virtual Tour" /> : null}
+			<PropertyMap property={property} />
 		</div>
 	</div>
 
 }
+

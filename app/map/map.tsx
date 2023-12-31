@@ -21,7 +21,6 @@ export function Map({ properties }: { properties: Property[] }): JSX.Element {
 			onClick={() => {
 				setSelectedProperty(null);
 			}}
-			style={{ width: '100vw', height: '100vh' }}
 			mapStyle="mapbox://styles/elijahcobb/clqpjqyu600jd01pd3tjt4224"
 		>
 			{properties.map(p => <Marker key={p.mls} property={p} />)}
